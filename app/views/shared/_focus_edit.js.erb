@@ -1,0 +1,10 @@
+if (!$("#files_and_folders_dialog").hasClass("avispopup")) {
+ $('body').append("<div id='alert_container'></div>");
+ $("#files_and_folders_dialog").addClass("avispopup");
+ $("#files_and_folders_dialog").addClass("avis");
+ $("#files_and_folders_dialog").addClass("caixa");
+ $("#files_and_folders").attr('aria-hidden','true');
+ $("#folder_form").attr('aria-hidden','true');
+ adjustDivHeight(false);
+}
+$("#files_and_folders_dialog").focus();

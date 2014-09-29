@@ -1,0 +1,13 @@
+<h3 id="notice"><%= notice %></h3>
+<div class="destacat">
+<dl>
+  <dt><%= t("audiobox_view.totUsers") %>:</dt>
+  <dd><%= @total_users %></dd>
+
+<dt><%= t("audiobox_view.totBookmarks") %>:</dt>
+<dd><%= @total_bookmarks %></dd>
+
+  </div>
+<div class="botonera">
+<%= link_to t('library_view.accepta'), bookmarks_path, :class => "boto" %>
+</div>

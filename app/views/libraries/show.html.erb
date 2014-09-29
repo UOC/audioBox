@@ -1,0 +1,43 @@
+<h3><%= t("audiobox_view.llegeix_llibre") %></h3>
+
+<div id="files_and_folders" role="main">
+<div id="fitxa_tabcontent" class="veure_fitxa">
+<h4><%= t("library_view.fitxa") %></h4>
+<div class="destacat">
+<dl>
+  <dt><%= Library.human_attribute_name("title") %>:</dt>
+  <dd><%= @library.title.force_encoding('UTF-8') %></dd>
+
+<dt><%= Library.human_attribute_name("autor") %>:</dt>
+<dd><%= @library.autor %></dd>
+
+  <dt><%= Library.human_attribute_name("name") %>:</dt>
+  <dd><%= @library.name.force_encoding('UTF-8') %></dd>
+
+  <% if !@library.site.nil? && !@library.site.blank? %>
+<dt><%= Library.human_attribute_name("site") %>:</dt>
+<dd><%= @library.site %></dd>
+
+
+<dt><%= Library.human_attribute_name("assignatura") %>:</dt>
+<dd><%= @library.assignatura %></dd>
+
+
+<dt><%= Library.human_attribute_name("periodo") %>:</dt>
+<dd><%= @library.periodo %></dd>
+<% end %>
+
+</dl>
+</div>
+</div>
+
+<div id="book_tabcontent" class="veure_llibre">
+    <h4><%= t("library_view.contingut") %></h4>
+				<div id="jp_play_lista" class="mostra">
+<%= breadcrumbs_gen_book(@folder) %>
+</div>
+
+<%= render 'shared/player' %>
+
+</div>
+</div>

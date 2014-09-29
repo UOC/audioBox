@@ -1,0 +1,17 @@
+<%= f.error_messages %>
+
+
+<p class="field">
+			<label for="email_addresses"><%= t "audiobox_view.enter_email" %></label>
+			<%= text_field_tag 'email_addresses', "",'aria-required' => 'true', :required => 'required' %>
+			</p>
+			<p class="field">
+			<label for="message"><%= t "audiobox_view.mensage_invite" %></label>
+			<%= text_area_tag 'message',""%>
+			<%= hidden_field_tag :folder_id, @folder.id%>
+</p>
+
+<div class="actions botonera">
+	<%= f.submit t("library_view.accepta"), :class => "boto" %>
+	<%= link_to t('audiobox_view.cancel_button'), folder_url(@folder.parent), :class => "boto" %>
+</div>

@@ -1,0 +1,67 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+
+  library_view:
+    title_form: "Rellenar los campos correspondientes"
+    new_form: "Añadiendo nuevo audio libro"
+    editing_form: "Editando datos del audio libro"
+    is_preferido: '¿Añadir a la pestaña de preferidos del widget?'
+    accepta: "Aceptar"
+    enrera: "Atrás"
+    edita: "Editar"
+    esborra: "Eliminar"
+    actualitza_pref: "Actualizar los audio libros preferidos"
+    preferits: "Preferidos"
+    public: "Han compartido"
+    tots: "Todos"
+    contingut: 'Contenido'
+    fitxa: 'Ficha'
+    obre_finestra: "Abrir en ventana nueva"
+    mostra_informacio: "Mostrar la información"
+    oculta_informacio: "Ocultar la información"
+    nova_url: "Nuevo audio libro"
+    title_view: "Audio libros"
+    title_layout: "AudioBox"
+    listado: "Listado"
+    llibreria: "Librería"
+    show: "Mostrando"
+    edit: "Editando"
+    new: "Creando"
+    good_created: 'El audio libro se ha creado correctamente. Continua creando el contenido del audio libro'
+    good_updated: 'El audio libro se ha modificado correctamente.'
+    no_items: "Todavía no tienes ningún audio libro creado. Para empezar a crear un audio libro ves al botón"
+    no_items_public: "Todavía nadie te ha compartido ningún audio libro."
+    no_faborito: "No has seleccionado ningún audio libro favorito. Accede a la pestaña todos."
+    segure: '¿Estás seguro?'
+    no_categori: "sin categoría"
+    no_save: "no permite guardar este audio libro"
+    verdadero: "Sí"
+    falso: "No"
+    exporta_audio_zip: "Crea ZIP en formato audio libro"
+    exporta_audio_daisy: "Crea ZIP en formato Daisy"
+    comenta: "Comentario"
+    veure_comentaris: "Ver comentarios"
+    expand_all: 'Muestra acciones'
+    compacta_all: 'Oculta acciones'
+    expand_info: 'Muestra más información'
+    compacta_info: 'Oculta más información'
+
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "%{model}: no encontrado"
+        one:   "Visualizando 1 %{model}"
+        other: "Visualizando un total de %{count} %{model}"
+      single_page_html:
+        zero:  "%{model} no encontrado"
+        one:   "Visualizando <strong>1</strong> %{model}"
+        other: "Visualizando <strong>un total de&nbsp;%{count}</strong> %{model}"
+
+      multi_page: "Visualizando %{model} %{from} - %{to} de %{count} en total"
+      multi_page_html: "Visualizando %{model} <strong>%{from}&nbsp;-&nbsp;%{to}</strong> de <strong>%{count}</strong> en total"

@@ -1,0 +1,14 @@
+<div id="header">
+	<div class="headerLeft">
+		<%= link_to image_tag("audiobox-logo2.png", :alt => t("audiobox_view.audio_box")), folders_path, :class => "left" %>
+	</div>
+
+	<% if signed_in? -%>
+	<div class="user_welcome_2">
+		<p>
+			Hello, <%= current_user.name.force_encoding('UTF-8') %>!<br>
+			<%= link_to 'Sign out', '/signout' %>
+		</p>
+	</div>
+	<% end -%>
+</div>

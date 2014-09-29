@@ -1,0 +1,191 @@
+# Sample localization file for English. Add more files in this directory for  other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ca:
+  error_folder_root: 'Aquesta secció no es pot modificar ni eliminar.'
+  error_folder_permiso: 'Aquesta secció no es pot llegir, eliminar ni modificar.'
+  error_folder_permiso_create: "No tens permís per a crear seccions en aquest nivell."
+  error_folder_permiso_delete: "No pots eliminar aquesta secció."
+  error_folder_permiso_delete_children: "No pots eliminar cap de les subseccions d'aquesta secció."
+  error_folder_permiso_method: "No pots %{method} aquesta secció."
+  error_folder_not_found: 'Secció no trobada. Acció anul·lada.'
+  error_user_bad: "Nom d'usuari o contrasenya incorrectes. Torna-ho a provar."
+  error_folder_not_actiu: 'àrea de fitxers no activa.'
+  error_area_not_permis: 'No tens accés a la carpeta. La teva acció ha estat anul·lada.'
+  error_area_not_session: 'Ha caducat la sessió'
+  msg_ok_save: 'Canvis desats correctament.'
+  msg_bad_save: 'Els canvis no es poden desar.'
+  msg_ok_update: "La secció s'ha modificat correctament."
+  msg_ok_created: "La secció s'ha creat correctament."
+  msg_ok_file_created: "El fitxer s'ha penjat correctament"
+  msg_file_ok_update: "El fitxer s'ha modificat correctament."
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid1: "La validació ha fallat: %{errors}"
+        taken: "L'operació s'ha completat correctament"
+        record_invalid: "La validació ha fallat: %{errors}"
+
+    models:
+      user_file: 'Fitxers'
+      coment: 'Comentaris'
+      folder: 'Seccions'
+      library: 'Audiollibres'
+      user: 'Usuaris'
+
+    attributes:
+      user_file:
+        attachment_file_name: 'Fitxer'
+        description: 'Títol del fitxer'
+        orden: 'Ordre'
+
+      coment:
+        comentario: 'Comentari'
+
+      folder:
+        name: 'Secció'
+        description: 'Títol'
+        orden: 'Ordre'
+
+      library:
+        name: 'Categoria'
+        site: 'Codi'
+        title: "Títol de l'audiollibre"
+        periodo: 'Període'
+
+      user:
+        name: 'Nom'
+        email: 'adreça electrònica'
+        is_clasic_upload: 'Vols desactivar la penjada de fitxers arrossegant-los?'
+        is_clasic_dialog: "Vols activar la compatibilitat amb lectors de pantalla? (amb aquesta opció desapareixen les finestres flotants)"
+        is_alto_contraste: 'Vols activar el contrast alt?'
+        campuslogin: "Nom d'usuari"
+        campususer: 'usuari ID de Campus'
+    errors:
+      messages:
+        inclusion_link: "L'URL ha de ser FTP, HTTP o NEWS"
+
+  jplayer:
+    nothing: 'cap'
+    play: 'Reprodueix'
+    pause: 'Pausa'
+    stop: 'Atura'
+    mute: 'Silenci'
+    unmute: 'so'
+    maxvolume: 'Volum màxim'
+    repeat: 'Repetició'
+    repeat_off: 'Atura la repetició'
+    track: "pista %{pista}"
+    now_playing: "Ara s'està reproduint"
+    track_selected: 'Pista seleccionada'
+
+  audiobox_view:
+    accedeix: 'Accedeix'
+    accions: "Accions"
+    add: "Afegeix fitxers..."
+    anar_index: "Vés a l'índex"
+    anar_seccio: 'Vés a la secció'
+    arbre: "arbre de seccions"
+    are_sure: "Segur que vols esborrar?"
+    are_sure_close: "Segur que vols sortir?"
+    arrosega_texte: "Arrossega els arxius aquí per a posar-los a l'audiollibre."
+    audio_box: "AudioBox"
+    autor: 'Autor'
+    book_enganxa: "Arrossega els arxius aquí per a posar-los a l'audiollibre"
+    book_file_no_datos: "Aquest audiollibre no conté cap arxiu. Comença a penjar fitxers en aquesta secció amb el botó Penja un fitxer"
+    book_no_datos: "Aquest audiollibre encara no conté cap fitxer d'àudio o secció. Comença a crear l'audiollibre penjant-hi arxius d'àudio o creant seccions amb els botons Penja un fitxer o Crea una nova secció, respectivament."
+    bookmarks: "Audiollibres"
+    boto_index: "Crea una secció nova"
+    cancelUpload: "Cancel·la la penjada"
+    cancel_button: "Cancel·la"
+    comentari: 'Comentari'
+    compartit_amb: 'Secció compartida amb'
+    contrasenya: "Contrasenya"
+    crea_en: 'Crea en'
+    createNewFolder: "Crea una nova secció"
+    date_modified: "Data de modificació"
+    deleteFiles: "Elimina fitxers"
+    descarrega: "Baixa"
+    description: 'Títol'
+    do_login: "entra"
+    dropbox_link: "Enllaça amb Dropbox"
+    edit_user: "s'està editant l'usuari"
+    enganxa: "Arrossega els arxius aquí per a afegir-los a la secció"
+    enter_email: "Introdueix els noms d'usuari o les adreces de correu aquí"
+    espai_disponible: " Espai disponible"
+    fichero: "Fitxer"
+    fileSared: "les seccions compartides pels altres"
+    file_crea_en: 'penja a'
+    file_description: 'Títol del fitxer'
+    file_no_datos: "Aquesta secció no conté cap arxiu. Comença a penjar fitxers en aquesta secció amb el botó Penja un fitxer"
+    filesSared: 'Audiollibres compartits'
+    fitxers: 'arxius'
+    fl_blank: 'El nom no pot ser buit'
+    fl_duplicate: 'Aquest nom ja existeix'
+    folder: "secció"
+    folderLlibreShared: "Llibre compartit"
+    folderShared: "secció compartida"
+    folder_llibre: 'Llibre'
+    folders:  "Seccions"
+    groups: "Grups"
+    index_name: 'Sumari'
+    invite: "Comparteix amb altres usuaris aquesta secció"
+    inviteBook: "Comparteix amb altres usuaris aquest audiollibre"
+    is_alto_contraste: 'Vols activar el contrast alt?'
+    is_clasic_dialog: "Vols activar la compatibilitat amb lectors de pantalla? (amb aquesta opció desapareixen les finestres flotants)"
+    is_clasic_upload: 'Vols desactivar la penjada de fitxers arrossegant-los?'
+    libraries: "Audiollibres"
+    llegeix_llibre: "Visualitza l'audiollibre"
+    llibre: 'Edita les dades'
+    llibre_compartit_amb: 'Audiollibre compartit amb'
+    mensage_invite: "Missatge opcional"
+    mess_info2: 'Crea, edita i comparteix els audiollibres'
+    mess_info: 'Crea els teus propis audiollibres'
+    meus_audios: 'Els meus audiollibres'
+    migas: 'Ets aquí'
+    mover_a: 'Desplaça a'
+    name: "Nom"
+    new_coment: 'Comentari nou'
+    new_folder: "Secció nova"
+    new_user: "Usuari nou"
+    no_datos: "Aquesta secció encara no conté cap fitxer d'àudio o secció. Continua penjant arxius d'àudio o creant seccions amb els botons Penja un fitxer o Crea una secció nova, respectivament."
+    no_index: "Aquest sumari no conté cap secció. Crea l'estructura del sumari afegint-hi seccions amb el botó"
+    per_exemple: 'Per exemple:'
+    perc_ocupacio: "percentatge d'ocupació"
+    please_login: "Comença la sessió:"
+    pref_access: "Accessibilitat"
+    pref_user: "Preferències"
+    renameFile: "Edita el fitxer"
+    rename_book: "Edita l'audiollibre"
+    rename_coment: 'Edita el comentari'
+    rename_folder: "Edita la secció"
+    repositori:  "Seccions"
+    root_name: 'Audiollibres'
+    save: "Desa"
+    selAll: "Selecciona tots els elements"
+    selecciona2: "Selecciona  %{name}"
+    selecciona: "Selecciona"
+    seleccionat: "Seleccionat"
+    selectFile: "O selecciona el fitxer"
+    selectYourFile: "Selecciona el fitxer"
+    settings: "Preferències"
+    share: "Comparteix"
+    shareBook: "Comparteix l'audiollibre"
+    shared: "Compartit"
+    size: "Mida"
+    startUpload: "Comença la penjada"
+    tanca: 'Tanca'
+    totBookmarks: "Total d'audiollibres"
+    totUsers: "Total d'usuaris"
+    type: "Tipus"
+    uoc_enlazado: "El UOCBox està enllaçat amb el teu Dropbox"
+    uoc_no_enlazado: "Enllaça el UOCBox amb el teu Dropbox"
+    up_file: "Fitxer"
+    up_file_overwrite: ' ja ha estat penjat. El vols sobreescriure?'
+    upload: "Penja"
+    uploadFile: "Penja un fitxer"
+    uploadingFile: "S'està penjant el fitxer..."
+    users: "Usuaris"
+    usuari: "Usuari"
+    no_assignat: "Pendent"

@@ -1,0 +1,56 @@
+<%= form_for [@parent_folder, @folder], :html => { :class => "formulari", :id => 'editando_folder' } do |f| %>
+<%= f.error_messages %>
+<p class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name,'aria-required' => 'true', 'aria-describedby' => "mas_info", :required => 'required' %>
+	<span id="mas_info" class="explain"><%= t("audiobox_view.per_exemple") %> 1,2,3...; A,B,C...; I,II,III...</span>
+</p>
+<p class="field">
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+</p>
+<p class="field">
+	<%= f.label :orden %>
+	<%= f.text_field :orden %>
+</p>
+<% if @folder.tipo != BOOK_PREFIX %>
+<p class="field">
+<label for="parent_id"><%= @mi_action ? t("audiobox_view.mover_a") : t("audiobox_view.crea_en") -%></label>
+<select id="parent_id" name="parent_id">
+<%= breadcrumbs_gen_select(buscaRootBook(@folder), @folder.id,@folder.parent_id) %>
+</select>
+</p>
+<% end %>
+<div class="actions botonera">
+    <%= f.submit t("library_view.accepta"), :class => "boto" %>
+    <%= link_to t('audiobox_view.cancel_button'), folder_url(@folder.parent), :class => "boto" %>
+  </div>
+  <% end %>
+
+
+  <script type="text/javascript" LANGUAGE="JavaScript">
+  var mis_folders = {};
+<% @folder_list.children.each do |folder| -%>
+<% unless folder.id.nil? %>
+mis_folders['<%= folder.name %>'] = <%= folder.id %>;
+<% end %>
+<% end %>
+
+$(document).ready(function() {
+$('#editando_folder input:submit').click(function(){
+	if ($('#folder_name').val().length == 0) {
+	alert("<%= t "audiobox_view.fl_blank" %>");
+	return false;
+	} else if (mis_folders["" + $('#folder_name').val()]) {
+	var cancel = confirm('<%= t "audiobox_view.fl_duplicate" %>');
+	if (!cancel) {
+	return false;
+	}
+	}
+	$('#editando_folder input:submit').attr("disabled", true);
+	mis_folders= {};
+	$('#editando_folder').submit();
+
+});
+});
+</script >

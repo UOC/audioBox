@@ -1,0 +1,19 @@
+<% if @breadcrumbs %>
+<% folder = @b_folder.nil? ? @folder : @b_folder %>
+<div class="breadcrumbs">
+<% unless folder.is_root? -%>
+	<p class="fil-ariadna" role="navigation" aria-label="<%= t 'audiobox_view.migas' %>">
+	<%= breadcrumbs(folder) %>
+	<% if @breadcrumbs == 1%>
+	<span class="breadcrumb ultim"><%= truncate(folder.nameConcatenado, :length => 50, :separator => ' ')  %></span>
+	<% else %>
+	<%= link_to( folder, :class => 'breadcrumb') { truncate(folder.nameConcatenado, :length => 50, :separator => ' ')  } %><span class="amagar"> &gt; </span>
+	<span class="breadcrumb ultim"><%=    @breadcrumbs %></span>
+	<% end %>
+</p>
+<% else %>
+<p class="fil-ariadna" role="navigation" aria-label="<%= t 'audiobox_view.migas' %>"><span class="breadcrumb primer"><%= t("audiobox_view.root_name")  -%></span>
+</p>
+<% end -%>
+</div>
+<% end %>

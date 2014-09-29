@@ -1,0 +1,17 @@
+<div class="destacat">
+<dl>
+  <dt><%= UserFile.human_attribute_name("attachment_file_name") %>:</dt>
+  <dd><%= @file.attachment_file_name %></dd>
+
+<dt><%= Coment.human_attribute_name("comentario") %>:</dt>
+<dd><%= simple_format(h(@coment.comentario)) %></dd>
+
+</dl>
+</div>
+
+<div class="botonera">
+<% if current_user.id == @coment.user_id %>
+<%= link_to t('library_view.edita'), edit_coment_path(@coment), :class => "boto", :remote => @rem_true  %>
+<% end %>
+<%= link_to t('library_view.accepta'), @mi_retorno, :class => "boto" %>
+</div>

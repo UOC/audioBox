@@ -1,0 +1,37 @@
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td class="selectFile"></td>
+        <td class="file_type preview"><span class="fade"></span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="1"><span class="label label-important">Error</span> {%=file.error%}</td>
+                        <td class="file_name name"><span>{%=file.name+ " " + o.options.autoUpload%}</span>
+        <span class="file_size size">{%=o.formatFileSize(file.size)%}</span></td>
+        <td>
+        {% } else { %}
+            <td><div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div></td>
+            <td class="file_name name"><span>{%=file.name+ " " + o.options.autoUpload%}</span>
+        <span class="file_size size">{%=o.formatFileSize(file.size)%}</span></td>
+            {% if (o.files.valid && !i) { %}
+            <td class="preferences start">
+            {% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+        {% } else { %}
+            <td class="preferences cancel">
+        {% } %}
+        {% } %}
+        {% if (!i) { %}
+        {% if (!o.options.autoUpload) { %}
+            <button class="btn btn-warning">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel</span>
+            </button>
+        {% } %}</td>
+        {% } %}
+    </tr>
+{% } %}
+</script>

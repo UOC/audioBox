@@ -1,0 +1,19 @@
+<% if @user_modul_id.nil?   %>
+<% if signed_in? -%>
+<div id="header" role="banner">
+	<h2 class="headerLeft"><%= link_to image_tag("audiobox-logo.png", :alt => t("audiobox_view.audio_box")), folders_path, :class => "left" %></h2>
+	<h3><%= t("audiobox_view.mess_info") %></h3>
+	<div class="headerRight">
+		<div class="right">
+<p class="left"><a href="#"><%= current_user.name %></a></p>
+		</div>
+	</div>
+</div>
+
+<p class="preferences">
+	<%= link_to edit_user_path(current_user), :class => "boto", :id => "boto_prefe", :remote => @rem_true do %>
+	<%= image_tag("http://#{HOST_CV}/UOC/mc-icons/general/preferencies-boto.png", :alt => t("audiobox_view.settings")) %><%= t("audiobox_view.pref_access")  %>
+		<% end -%>
+		</p>
+<% end -%>
+<% end -%>

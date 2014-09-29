@@ -1,0 +1,50 @@
+<h3>Users</h3>
+<% if flash[:error] -%>
+<p class="error info" role="alert">
+	<%= flash[:error] %>
+</p>
+<% end -%>
+
+
+<div class="botonera" role="navigation">
+<ul class="botonera">
+<li>
+	<%= link_to 'Create a new user', new_user_path, :class => "boto", :remote => @rem_true  %>
+	</li>
+	<li>
+<%= link_to "cerca", '/users/search', :class => "boto", :remote => @rem_true  %>
+</li>
+</ul>
+</div>
+
+<table class="mi_users">
+<thead>
+	<tr>
+	<th scope="col">Foto</th>
+		<th scope="col">Name</th>
+		<th scope="col">Email</th>
+		<th scope="col" class="preferences"><%= t "audiobox_view.accions" %></th>
+	</tr>
+	</thead>
+  <tbody>
+<% @all_users .each do |user| -%>
+	<tr class="<%= cycle('even','odd') %>">
+		<td><%= image_tag('user.png') %></td>
+		<td class="user_name"><%= user.name %></td>
+		<td class="user_email"><%= user.email %></td>
+      <td class="preferences">
+      <ul class="opcions" role="toolbar">
+      <li class="opcio"><%= link_to image_tag("http://#{HOST_CV}/UOC/mc-icons/general/preferencies.png", :alt => "#{t('library_view.edita')} #{user.name}"), edit_user_path(user), :title => t('library_view.edita'), :remote => @rem_true %></li>
+      <% unless user.is_admin -%>
+      <% if current_user.member_of_admins? -%>
+      <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{user.name}"), user_path(user), :method => 'delete', :confirm => t("audiobox_view.are_sure_del"), :title => t('library_view.esborra') %></li>
+      <% end %>
+      <% end %>
+      </ul>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate( @all_users, :param_name => :all_page, :class => "paginador pagines") if @paginacio_activa %>
+

@@ -1,0 +1,12 @@
+<h2><%= t "audiobox_view.uploadFile" %></h1>
+
+<% if @form_clasic == true -%>
+<%= render :partial => "new_clasic" %>
+<% else -%>
+<div id="fileupload">
+<%= form_for [@parent_folder, @file], :url => { :action => 'create' }, :html => { :class => "formulari", :multipart => true } do |f| %>
+<%= render :partial => "new_modern", :locals => { :f => f } %>
+<%= link_to t('library_view.enrera'), folder_url(@parent_folder), :class => "boto" %>
+<% end %>
+</div>
+<% end -%>

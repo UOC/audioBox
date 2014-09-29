@@ -1,0 +1,44 @@
+<div class="botonera">
+<h3><%= @folder.is_root? ? t("audiobox_view.root_name") : truncate(@folder.nameConcatenado, :length => 50, :separator => ' ')  %></h3>
+
+<% if flash[:error] -%>
+<p class="error info" role="alert">
+  <%= flash[:error] %>
+</p>
+<% end -%>
+</div>
+
+<div id="files_and_folders" role="main">
+  <table class="tcomentaris">
+  <thead>
+    <tr>
+      <th scope="col"><%= t "audiobox_view.comentari" %></th>
+      <th scope="col"><%= t "audiobox_view.autor" %></th>
+      <th scope="col"><%= t "audiobox_view.date_modified" %></th>
+      <th scope="col" class="preferences"><%= t "audiobox_view.accions" %></th>
+    </tr>
+    </thead>
+    <tbody>
+  <% @all_coments.each do |coment| -%>
+    <tr class="<%= cycle('even','odd') %>">
+      <td class="coment_name"><%= link_to truncate(coment.comentario, :length => 140, :separator => ' '), coment_path(coment), :remote => @rem_true  %></td>
+      <td><%= coment.user.name %></td>
+      <td><%= l coment.updated_at, :format => :short %></td>
+      <td class="preferences">
+      <% if coment.user_id == current_user.id %>
+      <ul class="opcions" role="toolbar">
+        <li class="opcio"><%= link_to image_tag("edita-opcio.png", :alt => "#{t('library_view.edita')} #{coment.id}"), edit_coment_path(coment), :title => t('library_view.edita'), :remote => @rem_true, :class => 'colapse' %></li>
+        <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{coment.id}"), coment_path(coment), :method => 'delete', :confirm => t("audiobox_view.are_sure"), :title => t('library_view.esborra'), :class => 'colapse' %></li>
+        </ul>
+        <% end %>
+      </td>
+    </tr>
+    <% end -%>
+</tbody>
+</table>
+
+<%= will_paginate @all_coments, :param_name => :all_page, :class => "paginador pagines" %>
+</div>
+
+
+

@@ -1,0 +1,15 @@
+<% if @user_modul_id.nil?   %>
+<div class="header" id="capsalera" role="banner" aria-label="cabecera">
+   			<h1><%= image_tag "logoUOC.png", :alt => "Universitat Oberta de Catalunya", :id => "headerImage" %></h1>
+   <!--Begin menu capsalera-->
+   			<ul class="menu_capsalera">
+            	<li>
+              <%= link_to SIGNOUT_HOST, :class => "boto", :confirm => t("audiobox_view.are_sure_close"), :remote => true do -%>
+	   		<%= image_tag "http://#{HOST_CV}/UOC/mc-icons/general/tanca-boto.png", :alt => "" %><%= t "audiobox_view.tanca" -%>
+	   <% end %>
+              </li>
+            </ul>
+   <!--End menu capsalera-->
+   <%= image_tag "beta.png", :alt => "beta", :class => "img_versio_beta" %>
+   		</div><!-- Fin capsalera -->
+   		<% end %>

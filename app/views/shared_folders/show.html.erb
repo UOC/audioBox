@@ -1,0 +1,38 @@
+<div class="botonera">
+<h3><%= @folder.is_root? ? t("audiobox_view.root_name") : truncate(@folder.nameConcatenado, :length => 50, :separator => ' ')  %></h3>
+
+<% if flash[:error] -%>
+<p class="error info" role="alert">
+  <%= flash[:error] %>
+</p>
+<% end -%>
+</div>
+
+<div id="files_and_folders" role="main">
+	<table class="mi_users">
+	<thead>
+		<tr>
+			<th scope="col" ><%= t "audiobox_view.name" %></th>
+			<th scope="col" ><%= t "audiobox_view.usuari" %></th>
+			<th scope="col" class="preferences"><%= t "audiobox_view.accions" %></th>
+		</tr>
+		</thead>
+		<tbody>
+
+	<% @shared_folders.each do |folder| -%>
+		<tr class="<%= cycle('even','odd') %>">
+			<td class="file_name"><%= folder.shared_user.nil? ? t("audiobox_view.no_assignat") : folder.shared_user.name %></td>
+			<td class="file_name"><%= folder.shared_email %></td>
+			<td class="preferences">
+				<ul class="opcions" role="toolbar">
+				<li class="opcio"><%= link_to image_tag("edita-opcio.png", :alt => "#{t('library_view.edita')} #{folder.shared_email}"), edit_shared_folder_path(folder), :title => t('library_view.edita'), :remote => @rem_true, :class => 'colapse' %></li>
+        <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{folder.shared_email}"), shared_folder_path(folder), :method => 'delete', :confirm => t("audiobox_view.are_sure"), :title => t('library_view.esborra'), :class => 'colapse' %></li>
+				</ul>
+			</td>
+		</tr>
+		<% end -%>
+		<tbody>
+		</table>
+		</div>
+
+

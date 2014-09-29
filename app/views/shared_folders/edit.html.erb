@@ -1,0 +1,4 @@
+<h2><%= @cabecera  %></h2>
+<%= form_for @shared_folder, :html => {:class => "formulari"}  do |f| %>
+	<%= render :partial => 'form_edit', :locals => { :f => f } %>
+<% end %>

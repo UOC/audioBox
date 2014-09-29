@@ -1,0 +1,21 @@
+<%= f.error_messages %>
+
+			<p class="field">
+	<%= f.label :shared_email, t("audiobox_view.enter_email") %>
+	<%= f.text_field :shared_email %>
+</p>
+<% if current_user.member_of_admins? -%>
+			<p class="field">
+			<%= f.label :library_id%>:
+	<%= f.text_field :library_id, :disabled => false  %>
+	</p>
+	<% end %>
+			<%= hidden_field_tag :folder_id, @shared_folder.folder_id%>
+			<%= hidden_field_tag :shared_user_id, @shared_folder.shared_user_id%>
+			<%= hidden_field_tag :user_id, @shared_folder.user_id%>
+
+
+<div class="actions botonera">
+	<%= f.submit t("library_view.accepta"), :class => "boto" %>
+	<%= link_to t('audiobox_view.cancel_button'), @mi_retorno, :class => "boto" %>
+</div>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t("library_view.title_layout") %><%= " - #{@title}" if !@title.nil? %></title>
+  <link rel="stylesheet" type="text/css" href="http://<%= HOST_CV %>/stylesheet/general.css" media="all" />
+  <%= stylesheet_link_tag    "application" %>
+  <% if @alto_contraste -%>
+  <link rel="stylesheet" type="text/css" href="http://<%= HOST_CV %>/stylesheet/contrast.css" />
+  <link rel="stylesheet" type="text/css" href="<%= PATH_SWF %>/audiobox-contrast.css" />
+  <% end %>
+    <style type="text/css">
+.ui-tabs .ui-tabs-hide {
+     display: none;
+}
+</style>
+  <%= javascript_include_tag "application" %>
+  <% if @mostrar_tabs  || @mostrarPlayer %>
+  <script type="text/javascript" LANGUAGE="JavaScript">
+$(document).ready(function(){
+<% if @mostrar_tabs  %>
+$("#tabs").tabs({
+      selected: <%= @pestanya ? @pestanya   : 0 %>
+      });
+<% end %>
+<% if @mostrarPlayer %>
+	// Local copy of jQuery selectors, for performance.
+	var	my_jPlayer = $("#jquery_jplayer_1"),
+	my_trackName = $("#jp_container_1 .track-name"),
+my_playState = $("#jp_container_1 .play-state");
+
+	// Some options
+	var	opt_play_first = false, // If true, will attempt to auto-play the default track on page loads. No effect on mobile devices, like iOS.
+		opt_auto_play = true, // If true, when a track is selected, it will auto-play.
+		opt_text_playing = "<%= t "jplayer.now_playing" %>", // Text when playing
+		opt_text_selected = "<%= t "jplayer.track_selected" %>"; // Text when not playing
+
+	// A flag to capture the first track
+	var first_track = true;
+
+
+	// Initialize the play state text
+	my_playState.text(opt_text_selected);
+
+	// Instance jPlayer
+	my_jPlayer.jPlayer({
+		ready: function () {
+			$("#jp_play_lista .track:first").click();
+		},
+		play: function(event) {
+			my_playState.text(opt_text_playing);
+		},
+		pause: function(event) {
+			my_playState.text(opt_text_selected);
+		},
+		ended: function(event) {
+			my_playState.text(opt_text_selected);
+		},
+		swfPath: "<%= PATH_SWF  %>",
+		solution: "flash, html",
+		supplied: "mp3",
+		wmode: "window"
+	});
+
+	// Create click handlers for the different tracks
+	$("#jp_play_lista .track").on('click', function(e) {
+		my_trackName.text($(this).text());
+		my_jPlayer.jPlayer("setMedia", {
+			mp3: $(this).attr("href")
+		});
+		if((opt_play_first && first_track) || (opt_auto_play && !first_track)) {
+			my_jPlayer.jPlayer("play");
+		}
+		first_track = false;
+		$(this).blur();
+		return false;
+	});
+	<% end %>
+
+});
+</script>
+<% end %>
+  <% if !@contador_1.nil? || @user_modul_id -%>
+  <script type="text/javascript" LANGUAGE="JavaScript">
+  <%= raw " function _IG_AdjustIFrameHeight() {\n" <<
+  " var myBody = eval('window.document.#{ ie? ? 'body' : 'documentElement' }');\n" <<
+        " if ((window.parent != window) && window.parent.adjust_modul_container) {\n" <<
+        " myBody.style.overflow='hidden';\n " <<
+        "   var w = parent.modul_container_width('#{@user_modul_id}');\n" <<
+        "   myBody.style.width = Math.min(w, $(myBody).width()) + 'px';\n" <<
+        "   parent.adjust_modul_container('#{@user_modul_id}', $(myBody).height());\n" <<
+              " myBody.style.width = 'auto';\n " <<
+      " myBody.style.overflow='';\n" <<
+        " }" <<
+        " else if ($('#content_container_#{@user_modul_id}')) {\n" <<
+        "   $('#content_container_#{@user_modul_id}').height( $('#content_container_#{@user_modul_id}').children().height() + 'px');\n" <<
+        " }\n" <<
+        "}\n" if @user_modul_id %>
+
+   var last_elem;
+   $(document).ready(function() {
+
+     <% if !@contador_1.nil? -%>
+      $("#tabs").tabs({
+      selected: <%= @pestanya  %>
+      <%= ", show:function(event, ui) { _IG_AdjustIFrameHeight(); }" if @user_modul_id %>
+      });
+
+      $("ul.subllista").addClass("ocult");
+      $("ul.subllista").attr('aria-hidden','true');
+      $('a.imatgeLlistaClick').on('click', function(e) {
+      var elem = $(this).attr("id");
+      if (last_elem && last_elem != elem && $("#" + last_elem ).hasClass("actiu")) {
+     $("#ul_" + last_elem ).addClass("ocult");
+     $("#ul_" + last_elem ).attr('aria-hidden','true');
+     $("#" + last_elem ).attr('aria-expanded','false');
+     $("#li_" + last_elem ).removeClass("desplegar");
+     $("#" + last_elem ).removeClass("actiu");
+     $("#span_" + last_elem ).html("<%= t('library_view.mostra_informacio') %>");
+     $("#img_" + last_elem ).attr("src", "<%= "http://#{HOST_CV}/UOC/mc-icons/general/baixa-ico2.png" %>" );
+      }
+      if ($("#ul_" + elem ).hasClass("ocult")) {
+     $("#ul_" + elem ).removeClass("ocult");
+     $("#ul_" + elem ).attr('aria-hidden','false');
+     $(this).attr('aria-expanded','true');
+     $("#li_" + elem ).addClass("desplegar");
+     $(this).addClass("actiu");
+     $("#span_" + elem ).html("<%= t('library_view.oculta_informacio') %>");
+     $("#img_" + elem ).attr("src", "<%= "http://#{HOST_CV}/UOC/mc-icons/general/puja-ico2.png" %>" );
+      } else {
+     $("#ul_" + elem ).addClass("ocult");
+     $("#ul_" + elem ).attr('aria-hidden','true');
+     $(this).attr('aria-expanded','false');
+     $("#li_" + elem ).removeClass("desplegar");
+     $(this).removeClass("actiu");
+     $("#span_" + elem ).html("<%= t('library_view.mostra_informacio') %>");
+     $("#img_" + elem ).attr("src", "<%= "http://#{HOST_CV}/UOC/mc-icons/general/baixa-ico2.png" %>" );
+      }
+      <%= "_IG_AdjustIFrameHeight();" if @user_modul_id %>
+     last_elem  = elem;
+     e.preventDefault();
+     });
+
+     $('a[popup]').on('click', function(e) {
+     window.open(this.href);
+     e.preventDefault();
+     });
+
+<% end %>
+     <%= "_IG_AdjustIFrameHeight();" if @user_modul_id %>
+     });
+  </script>
+<% end %>
+  <%= csrf_meta_tags %>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <%= yield :head %>
+</head>
+<body class="audiobox popup">
+<%= render(:partial => 'shared/header_beta') %>
+  <div id="container">
+  <%= render(:partial => 'shared/header_folder') %>
+    <%= render(:partial => 'shared/menu') %>
+    <%= render(:partial => 'shared/breadcrumbs') %>
+        <div id="content" class="contingut" role="main">
+    <%# = render(:partial => 'shared/pestanya') %>
+      <%= yield %>
+      <% if @rem_true  %>
+			<div id="files_and_folders_dialog" role=”region” aria-live=”polite” tabindex="-1"></div>
+			<% end %>
+    </div>
+  </div>
+</body>
+</html>

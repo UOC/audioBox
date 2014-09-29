@@ -1,0 +1,10 @@
+<% if 1 == 0 && !@contador_1.nil? -%>
+<div id="cap_nou" class="agora">
+		<p class="dreta">
+				<%= link_to new_library_path, :class => "boto" do %>
+				<%= image_tag "http://#{HOST_CV}/UOC/mc-icons/general/mes-boto.png", :alt => "" %>
+				<%= t("library_view.nova_url") %>
+				<% end %>
+		</p>
+	</div>
+<% end -%>

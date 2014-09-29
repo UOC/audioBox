@@ -1,0 +1,97 @@
+<div id="tabs">
+<ul class="pestanyes psimple">
+    <li id="favorites" ><a href="#favorites_tabcontent"><%= t("bookmark_view.preferits") %></a></li>
+    <li id="all"><a href="#all_tabcontent"><%= t("bookmark_view.tots") %></a></li>
+  </ul>
+
+    <div id="favorites_tabcontent">
+<% if @all_bookmarks.length == 0 %>
+<div class="agora">
+    <p><%= t("bookmark_view.no_items") %> "<%= t("bookmark_view.nova_url") %>."</p>
+        </div>
+    <% elsif @bookmarks.length == 0 %>
+    <div class="agora">
+    <p><%= t("bookmark_view.no_faborito")  %></p>
+    </div>
+    <% else %>
+      <ul class="decorada llistaBlock">
+<% @bookmarks.each do |bookmark| %>
+<% folder = Folder.find(bookmark.folder_id) %>
+                    <li <% if Bookmark.is_last_item(@bookmarks, bookmark) %> class="ultim" <% end %> >
+                    <%= link_to  folder_path(folder),  :class => "link"   do -%>
+<%= folder.name -%><%= image_tag  "http://#{HOST_CV}/UOC/mc-icons/general/popup.png", :alt => t("bookmark_view.obre_finestra") -%>
+<% end %>
+          </li>
+
+<% end %>
+      </ul>
+
+<%= will_paginate @bookmarks, :param_name => :preferit_page, :class => "paginador pagines" %>
+
+<% end %>
+    </div>
+<div id="all_tabcontent">
+<% if @all_bookmarks.length > 0 %>
+<%= form_tag( 'bookmarks/update_multiple', :method => :post  ) do %>
+    <ul class="decoradatop llistaBlock llistacheck desplegable" >
+<% @all_bookmarks.each do |bookmark| %>
+<% folder = Folder.find(bookmark.folder_id) %>
+<% name = folder.subtipo.blank? ? t("bookmark_view.no_categori") : folder.subtipo    -%>
+      <% if name != @contador_1 %>
+      <% if !@contador_1.blank? %>
+                </ul>
+      </li>
+
+      <li id="li_enl_<%= bookmark.id %>">
+<% else %>
+      <li id="li_enl_<%= bookmark.id %>" class="primer">
+      <% end %>
+      <h3>
+      <a id="enl_<%= bookmark.id %>" class="imatgeLlistaClick" href="#id_<%= bookmark.id %>"><img id="img_enl_<%= bookmark.id %>" src="<%= "http://#{HOST_CV}/UOC/mc-icons/general/baixa-ico2.png" %>" alt="" />
+      <%= name %>
+      <span id="span_enl_<%= bookmark.id %>" class="amagar"><%= t("bookmark_view.mostra_informacio") %></span>
+      </a>
+      </h3>
+      <% @contador_1 = name -%>
+      <ul id="ul_enl_<%= bookmark.id %>" class="decoradatop llistaBlock llistacheck subllista">
+                <li id="id_<%= bookmark.id %>" class="primer">
+                <% else %>
+                <li id="id_<%= bookmark.id %>">
+      <% end -%>
+
+          <%= hidden_field_tag "bookmark[#{bookmark.id}][is_preferido]", 0 %>
+            <%= check_box_tag "bookmark[#{bookmark.id}][is_preferido]", 1, bookmark.is_preferido == true, :class => "check"  %>
+            <label class="amagar" for="bookmark_<%= bookmark.id %>_is_preferido"><%= folder.name %></label>
+            <ul class="opcions">
+                    <li class="url">
+                    <%= link_to  folder_path(folder),  :class => "link"   do -%>
+<%= folder.name %><%= image_tag  "http://#{HOST_CV}/UOC/mc-icons/general/popup.png", :alt => t("bookmark_view.obre_finestra") -%>
+<% end %>
+                      </li>
+                        <li class="opcio"><%= link_to image_tag( "http://#{HOST_CV}/UOC/mc-icons/widgets/esborra.png", :alt => "#{t("bookmark_view.esborra")} #{folder.name}"), bookmark, :confirm => t("bookmark_view.segure"), :method => :delete, :title => "Esborrar" %></li>
+                        <li class="opcio"><%= link_to image_tag( "http://#{HOST_CV}/UOC/mc-icons/widgets/edita.png", :alt => "#{t("bookmark_view.edita")} #{folder.name}"), edit_shared_folder_path(bookmark), :title => "Editar" %></li>
+                    </ul>
+          </li>
+
+          <% end %>
+      <% if !@contador_1.blank? %>
+          </ul>
+      </li>
+      <% end %>
+
+                </ul>
+
+
+  <div class="botonera">
+    <%= submit_tag t("bookmark_view.actualitza_pref"), :class=>"boto" %>
+  </div>
+  <% end %>
+
+
+
+<%= will_paginate @all_bookmarks, :param_name => :all_page, :class => "paginador pagines" %>
+<% end %>
+  </div>
+
+
+

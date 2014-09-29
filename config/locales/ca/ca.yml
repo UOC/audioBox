@@ -1,0 +1,67 @@
+# Sample localization file for English. Add more files in this directory for  other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ca:
+
+  library_view:
+    title_form: "Empleneu els camps corresponents"
+    new_form: "Afegeix-hi un audiollibre"
+    editing_form: "Edita les dades de l'audiollibre"
+    is_preferido: 'El vols afegir a la pestanya de Preferits del giny?'
+    accepta: "Accepta"
+    enrera: "Enrere"
+    edita: "Edita"
+    esborra: "Esborra"
+    actualitza_pref: "Actualitza els audiollibres preferits"
+    preferits: "Preferits"
+    tots: "Tots"
+    public: "Compartits amb tu"
+    contingut: 'Contingut'
+    fitxa: 'Fitxa'
+    obre_finestra: "Obre en una finestra nova"
+    mostra_informacio: "Mostra la informació"
+    oculta_informacio: "Amaga la informació"
+    nova_url: "Nou audiollibre"
+    title_view: "Audiollibres"
+    title_layout: "AudioBox"
+    listado: "Llista"
+    llibreria: "Llibreria"
+    show: "Es mostra"
+    edit: "S'edita"
+    new: "Es crea"
+    good_created: "L'audiollibre s'ha creat correctament. Continua creant el contingut de l'audiollibre"
+    good_updated: "L'audiollibre s'ha modificat correctament."
+    no_items: "Encara no tens cap audiollibre creat. Per a començar a crear un audiollibre, vés al botó"
+    no_items_public: "Encara no han compartit cap audiollibre amb tu."
+    no_faborito: "No has seleccionat cap audiollibre preferit. Accedeix a la pestanya Tots."
+    segure: 'Segur que...?'
+    no_categori: "sense categoria"
+    no_save: "no permet desar aquest audiollibre"
+    verdadero: "Sí"
+    falso: "No"
+    exporta_audio_zip: "Crea el ZIP en format audiollibre"
+    exporta_audio_daisy: "Crea el ZIP en format Daisy"
+    comenta: "Comentari"
+    veure_comentaris: "Visualitza els comentaris"
+    expand_all: 'Mostra les accions'
+    compacta_all: 'Amaga les accions'
+    expand_info: 'Mostra més informació'
+    compacta_info: 'Amaga més informació'
+
+  will_paginate:
+    previous_label: "&#8592; anterior"
+    next_label: "&#8594; següent"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "%{model}: no trobat"
+        one:   "Es visualitza 1 %{model}"
+        other: "Es visualitza un total de %{count} %{model}"
+      single_page_html:
+        zero:  "%{model} no trobat"
+        one:   "Es visualitza <strong>1</strong> %{model}"
+        other: "Es visualitza <strong>un total de&nbsp;%{count}</strong> %{model}"
+
+      multi_page: "Es visualitza %{model} %{from} - %{to} de %{count} en total"
+      multi_page_html: "Es visualitza %{model} <strong>%{from}&nbsp;-&nbsp;%{to}</strong> de <strong>%{count}</strong> en total"

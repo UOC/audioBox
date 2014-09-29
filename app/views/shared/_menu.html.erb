@@ -1,0 +1,25 @@
+	<% if signed_in? -%>
+
+<div id="menu" role="navigation" aria-label="menú principal">
+	<ul class="botonera">
+	<% if !@user_modul_id.nil?   %>
+		<li><%= link_to t("audiobox_view.libraries"), folders_path, :class => "boto" %></li>
+		<% else %>
+		<li><%= link_to t("library_view.preferits"), libraries_path, :class => "boto" %></li>
+<% if current_user.member_of_admins? -%>
+		<li><%= link_to t("audiobox_view.users"), users_path, :class => "boto" %></li>
+		<li><%= link_to t("audiobox_view.groups"), groups_path, :class => "boto" %></li>
+<% end -%>
+<% end -%>
+<li><%= link_to new_library_path, :class => "boto", :remote => false do %>
+				<%= image_tag "http://#{HOST_CV}/UOC/mc-icons/general/mes-boto.png", :alt => "" %>
+				<%= t("library_view.nova_url") %>
+				<% end %></li>
+		</ul>
+</div>
+
+	<% else -%>
+	<!--
+		<%# = link_to 'Sign in', new_session_path %>
+		-->
+	<% end -%>

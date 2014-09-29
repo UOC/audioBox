@@ -1,0 +1,7 @@
+<h2><%= t "audiobox_view.rename_coment" %></h2>
+<% if flash[:notice] -%>
+<p class="notice">
+	<%= flash[:notice] %>
+</p>
+<% end -%>
+	<%= render :partial => 'form_edit' %>

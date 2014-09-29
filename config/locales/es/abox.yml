@@ -1,0 +1,192 @@
+# Sample localization file for English. Add more files in this directory for  other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+
+  error_folder_root: 'Esta sección no se puede eliminar ni modificar.'
+  error_folder_permiso: 'La sección no se puede leer, modificar ni eliminar.'
+  error_folder_permiso_create: "No tienes permisos para crear esta sección."
+  error_folder_permiso_delete: "No tienes permisos para eliminar esta sección."
+  error_folder_permiso_delete_children: "No tienes permisos para eliminar una de las subsecciones de esta."
+  error_folder_permiso_method: "No tienes permisos %{method} para esta sección."
+  error_folder_not_found: 'No se encuentra esta sección. Se ha cancelado la acción.'
+  error_user_bad: 'Nombre de usuario o contraseña incorrectos. Prueba de nuevo.'
+  error_folder_not_actiu: 'Área de ficheros no activa.'
+  error_area_not_permis: 'No tienes permisos para acceder a esta sección. Se ha cancelado la acción.'
+  error_area_not_session: 'Ha caducado la sesión'
+  msg_ok_save: 'Los cambios se han guardado correctamente.'
+  msg_bad_save: 'Los cambios no se pueden guardar.'
+  msg_ok_update: 'La sección se ha modificado correctamente'
+  msg_ok_created: 'La sección se ha creado correctamente.'
+  msg_ok_file_created: 'El fichero se ha subido correctamente'
+  msg_file_ok_update: "El fichero se ha modificado correctamente."
+  activerecord:
+    errors:
+      messages:
+        record_invalid1: "La validación ha fallado: %{errors}"
+        taken: "Operación completada correctamente"
+        record_invalid: "La validación ha fallado: %{errors}"
+
+    models:
+      user_file: 'Ficheros'
+      coment: 'Comentarios'
+      folder: 'Secciones'
+      library: 'Audiolibros'
+      user: 'Usuarios'
+
+    attributes:
+      folder:
+        name: 'Sección'
+        description: 'Título'
+        orden: 'Orden'
+
+      user_file:
+        attachment_file_name: 'Archivo'
+        description: 'Título del archivo'
+        orden: 'Orden'
+
+      coment:
+        comentario: 'Comentario'
+
+      user:
+        name: 'Nombre'
+        email: 'Dirección electrónica'
+        is_clasic_upload: '¿Desactivar la subida de archivos arrastrando?'
+        is_clasic_dialog: '¿Activar la compatibilidad con lectores de pantalla?'
+        is_alto_contraste: '¿Activar el alto contraste?'
+        campuslogin: 'Inicio de sesión'
+        campususer: 'Nombre de usuario del Campus'
+
+      library:
+        name: 'Categoría'
+        site: 'Código'
+        title: 'Título del audiolibro'
+        periodo: 'Periodo'
+    errors:
+      messages:
+        inclusion_link: "El enlace tiene que ser FTP, HTTP o NEWS"
+        inclusion_seguryty: "Solo se acepta público y privado"
+
+  jplayer:
+    nothing: 'Ninguno'
+    play: 'Reproducir'
+    pause: 'Pausa'
+    stop: 'Parar'
+    mute: 'Silenciar'
+    unmute: 'Activar el sonido'
+    maxvolume: 'Volumen máximo'
+    repeat: 'Repetir'
+    repeat_off: 'Parar la repetición'
+    track: "Pista %{pista}"
+    now_playing: 'Reproduciendo ahora'
+    track_selected: 'Pista seleccionada'
+
+  audiobox_view:
+    accedeix: 'Acceder'
+    accions: "Acciones"
+    add: "Añadir ficheros..."
+    anar_index: "Ir al índice"
+    anar_seccio: 'Ir a la sección'
+    arbre: 'Árbol de secciones'
+    are_sure: '¿Seguro que quieres eliminarlo?'
+    are_sure_close: "¿Seguro que quieres salir?"
+    arrosega_texte: "Arrastra tus archivos aquí para añadirlos a tu audiolibro"
+    audio_box: "AudioBox"
+    autor: 'Autor'
+    book_enganxa: "Arrastra tus archivos aquí para añadirlos al audiolibro"
+    book_file_no_datos: "Este audiolibro no contiene ningún archivo. Empieza a subir ficheros en esta sección con el botón Subir un fichero"
+    book_no_datos: "Este audiolibro no contiene aún ningún fichero de audio o sección. Empieza a crear tu audiolibro subiendo archivos de audio o creando secciones con los botones Subir un fichero o Crear una nueva sección, respectivamente."
+    bookmarks: "Audiolibros"
+    boto_index: "Crear una nueva sección"
+    cancelUpload: "Cancelar la subida"
+    cancel_button: "Cancelar"
+    comentari: 'Comentario'
+    compartit_amb: 'Sección compartida con'
+    contrasenya: "Contraseña"
+    crea_en: 'Crear en'
+    createNewFolder: "Crear una nueva sección"
+    date_modified: "Fecha de modificación"
+    deleteFiles: "Eliminar ficheros"
+    descarrega: "Descargar"
+    description: 'Título'
+    do_login: "Entre"
+    dropbox_link: "Unir con Dropbox"
+    edit_user: "Editando usuario"
+    enganxa: "Arrastra tus archivos aquí para añadirlos a la sección"
+    enter_email: "Introducir los nombres de usuario o las direcciones de correo aquí"
+    espai_disponible: " Espacio disponible"
+    fichero: "Fichero"
+    fileSared: "Las secciones compartidas por otros usuarios"
+    file_crea_en: 'Subir a'
+    file_description: 'Título del archivo'
+    file_no_datos: "Esta sección no contiene ningún archivo. Empieza a subir ficheros a esta sección con el botón Subir un fichero"
+    filesSared: 'Audiolibros compartidos'
+    fitxers: 'Archivos'
+    fl_blank: 'El nombre no puede estar vacío'
+    fl_duplicate: 'Este nombre ya existe'
+    folder: "Sección"
+    folderLlibreShared: "Libro compartido"
+    folderShared: "Sección compartida"
+    folder_llibre: 'Libro'
+    folders:  "Secciones"
+    groups: "Grupos"
+    index_name: 'Sumario'
+    invite: "Compartir con otros esta sección"
+    inviteBook: "Compartir con otros este audiolibro"
+    is_alto_contraste: '¿Activar el alto contraste?'
+    is_clasic_dialog: '¿Activar la compatibilidad con lectores de pantalla? (con esta opción desaparecen las ventanas flotantes)'
+    is_clasic_upload: '¿Desactivar la subida de ficheros vía arrastre?'
+    libraries: "Audiolibros"
+    llegeix_llibre: 'Ver audiolibro'
+    llibre: 'Editar datos'
+    llibre_compartit_amb: 'Libro compartido con'
+    mensage_invite: "Mensaje opcional"
+    mess_info2: 'Crear, editar y compartir tus audiolibros'
+    mess_info: 'Crear tus propios audiolibros'
+    meus_audios: 'Mis audiolibros'
+    migas: 'Estás aquí'
+    mover_a: 'Mover a'
+    name: "Nombre"
+    new_coment: 'Nuevo comentario'
+    new_folder: "Nueva sección"
+    new_user: "Nuevo usuario"
+    no_datos: "Esta sección no contiene aún ningún fichero de audio o sección. Continúa subiendo archivos de audio o creando secciones mediante los botones Subir un fichero o Crear una nueva sección, respectivamente."
+    no_index: "Este sumario no contiene ninguna sección. Crea la estructura del sumario añadiendo secciones mediante el botón"
+    per_exemple: 'Por ejemplo:'
+    perc_ocupacio: "Porcentaje de ocupación"
+    please_login: "Iniciar sesión"
+    pref_access: "Accesibilidad"
+    pref_user: "Preferencias"
+    renameFile: "Editar un fichero"
+    rename_book: "Editar un audiolibro"
+    rename_coment: 'Editar un comentario'
+    rename_folder: "Renombrar una sección"
+    repositori:  "Secciones"
+    root_name: 'Audiolibros'
+    save: "Guardar"
+    selAll: "Seleccionar todos los elementos"
+    selecciona2: "Seleccionar  %{name}"
+    selecciona: "Seleccionar"
+    seleccionat: "Seleccionado"
+    selectFile: "O seleccionar el fichero"
+    selectYourFile: "Seleccionar el archivo"
+    settings: "Preferencias"
+    share: "Compartir"
+    shareBook: "Compartir el audiolibro"
+    shared: "Compartido"
+    size: "Tamaño"
+    startUpload: "Iniciar la subida"
+    tanca: 'Cerrar'
+    totBookmarks: "Total de audiolibros"
+    totUsers: "Total de usuarios"
+    type: "Tipo"
+    uoc_enlazado: "Tu UOCBOX está enlazado con tu Dropbox"
+    uoc_no_enlazado: "Enlazar tu UOCBOX con tu Dropbox"
+    up_file: "Fichero"
+    up_file_overwrite: 'Ya ha sido subido. ¿Sobrescribir?'
+    upload: "Subir"
+    uploadFile: "Subir un archivo"
+    uploadingFile: "Subiendo el archivo..."
+    users: "Usuarios"
+    usuari: "Usuario"
+    no_assignat: "Pendiente"

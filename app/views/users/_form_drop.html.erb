@@ -1,0 +1,16 @@
+<%= f.error_messages %>
+
+
+<div class="field">
+			<%= f.check_box :is_dropbox %>
+			<%= label_tag :is_dropbox, t("audiobox_view.dropbox_link")  %>
+</div>
+
+ <div class="actions botonera">
+	<%= f.submit t("library_view.accepta"), :class => "boto" %>
+<% if @user != current_user -%>
+	<%= link_to t('library_view.enrera'), users_url %>
+	<% else %>
+	<%= link_to t('audiobox_view.cancel_button'), folder_url(Folder.root(current_user.id)), :class => "boto" %>
+<% end -%>
+</div>

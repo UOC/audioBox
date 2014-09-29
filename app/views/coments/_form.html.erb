@@ -1,0 +1,11 @@
+<%= form_for [@file, @coment], :url => { :action => @mi_action }, :html => { :class => "formulari" } do |f| %>
+<%= f.error_messages %>
+<p class="field">
+	<%= f.label :comentario %>
+	<%= f.text_area :comentario, :size => "30x10" %>
+</p>
+<div class="actions botonera">
+    <%= f.submit t("library_view.accepta"), :class => "boto" %>
+    <%= link_to t('audiobox_view.cancel_button'), @mi_retorno, :class => "boto" %>
+  </div>
+  <% end %>

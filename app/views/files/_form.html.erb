@@ -1,0 +1,27 @@
+<%= form_for @file, :url => { :action => 'update' }, :html => { :class => "formulari" } do |f| %>
+	<%= f.error_messages %>
+	<p class="field">
+		<%= f.label :attachment_file_name, t("audiobox_view.fichero") %>
+		<%= f.text_field :attachment_file_name, :disabled => true %>
+	</p>
+		<p class="field">
+		<%= f.label :description, t("audiobox_view.file_description") %>
+		<%= f.text_field :description %>
+	</p>
+		<p class="field">
+		<%= f.label :orden %>
+		<%= f.text_field :orden %>
+	</p>
+	<% if @mi_action  %>
+<p class="field">
+<label for="parent_id"><%= t("audiobox_view.mover_a") -%></label>
+<select id="parent_id" name="parent_id">
+<%= breadcrumbs_gen_select(buscaRootBook(@folder), 0,@folder.id) %>
+</select>
+</p>
+<% end %>
+	<div class="actions botonera">
+		<%= f.submit t("library_view.accepta"), :class => "boto" %>
+		<%= link_to t('audiobox_view.cancel_button'), folder_url(@folder), :class => "boto" %>
+	</div>
+<% end %>

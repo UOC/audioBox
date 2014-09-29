@@ -1,0 +1,56 @@
+<%= form_for [@parent_folder, @file], :url => { :action => 'create' }, :html => { :class => "formulari", :id => 'subir_file', :multipart => true } do |f| %>
+	<%= f.error_messages %>
+	<p class="field">
+		<%= f.label :attachment, t("audiobox_view.selectYourFile") %>
+		<%= f.file_field :attachment, :class => 'mfichero' %>
+	</p>
+	<p class="field">
+		<%= f.label :description %>
+		<%= f.text_field :description %>
+	</p>
+		<p class="field">
+		<%= f.label :orden %>
+		<%= f.text_field :orden %>
+	</p>
+	<p class="field">
+<label for="parent_id"><%= t("audiobox_view.file_crea_en") -%></label>
+<select id="parent_id" name="parent_id">
+<%= breadcrumbs_gen_select(buscaRootBook(@parent_folder), 0,@parent_folder.id) %>
+</select>
+</p>
+	<%= hidden_field_tag "call_clasic", 'yes' %>
+	<%= hidden_field_tag "overwrite", '1' %>
+  <p><span class="fileupload-loading ocult"><%= t "audiobox_view.uploadingFile" %></span></p>
+	<div class="actions botonera">
+		<%= f.submit t("audiobox_view.upload"), :class => "boto" %>
+    <%= link_to t('audiobox_view.cancel_button'), folder_url(@parent_folder), :class => "boto" %>
+	</div>
+<% end %>
+
+<script type="text/javascript" LANGUAGE="JavaScript">
+var mis_folders= {};
+<% @parent_folder.user_files.each do |file| -%>
+<% unless file.id.nil? %>
+mis_folders['<%= file.attachment_file_name %>'] = "filend_<%= file.id %>";
+<% end %>
+<% end %>
+
+$(document).ready(function() {
+$('#subir_file input:submit').click(function() {
+	if (!$('#user_file_attachment.mfichero').val().length ) {
+	alert("<%= t "audiobox_view.fl_blank" %>");
+	return false;
+	} else if (mis_folders[$('#user_file_attachment.mfichero').val().split('\\').pop()]) {
+	var cancel = confirm( '<%= t "audiobox_view.up_file" %> ' + $('#subir_file #user_file_attachment.mfichero').val().split('\\').pop() + ' <%= t "audiobox_view.fl_duplicate" %>' );
+                        if (!cancel) {
+	return false;
+	}
+	}
+
+	mis_folders= {};
+  $('#subir_file span.fileupload-loading').removeClass("ocult");
+  $('#subir_file input:submit').attr("disabled", true);
+  $('#subir_file').submit();
+});
+});
+</script >

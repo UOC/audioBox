@@ -1,0 +1,118 @@
+<div id="tabs">
+<ul class="pestanyes">
+    <li id="favorites" ><a href="#favorites_tabcontent"><%= t("library_view.preferits") %></a></li>
+    <li id="all"><a href="#all_tabcontent"><%= t("library_view.tots") %></a></li>
+    <li id="public"><a href="#public_tabcontent"><%= t("library_view.public") %></a></li>
+  </ul>
+
+    <div id="favorites_tabcontent">
+<% if @all_libraries.length == 0 %>
+<div class="agora">
+    <p><%= t("library_view.no_items") %> "<%= t("library_view.nova_url") %>."</p>
+        </div>
+    <% elsif @libraries.length == 0 %>
+    <div class="agora">
+    <p><%= t("library_view.no_faborito")  %></p>
+    </div>
+    <% else %>
+      <ul class="decorada llistaBlock">
+<% @libraries.each do |library| %>
+                    <li>
+                    <%= link_to  library_url(library),  :class => "link"  do -%>
+<%= library.title -%>
+<% end %>
+          </li>
+
+<% end %>
+      </ul>
+
+<%= will_paginate @libraries, :param_name => :preferit_page, :class => "paginador pagines" %>
+
+<% end %>
+    </div>
+<div id="all_tabcontent">
+<% if @all_libraries.length > 0 %>
+<%= form_tag( 'libraries/update_multiple', :method => :post  ) do %>
+    <ul class="decoradatop llistaBlock llistacheck desplegable" >
+<% @all_libraries.each do |library| %>
+<% name = library.name.blank? ? t("library_view.no_categori") : library.name    -%>
+      <% if name != @contador_1 %>
+      <% if !@contador_1.blank? %>
+                </ul>
+      </li>
+
+      <li id="li_enl_<%= library.id %>">
+<% else %>
+      <li id="li_enl_<%= library.id %>" class="primer">
+      <% end %>
+      <h3>
+      <a aria-expanded="false" id="enl_<%= library.id %>" class="imatgeLlistaClick" href="#id_<%= library.id %>" role="button" aria-controls="ul_enl_<%= library.id %>"><img id="img_enl_<%= library.id %>" src="<%= "http://#{HOST_CV}/UOC/mc-icons/general/baixa-ico2.png" %>" alt="" />
+      <%= name %>
+      <span id="span_enl_<%= library.id %>" class="amagar"><%= t("library_view.mostra_informacio") %></span>
+      </a>
+      </h3>
+      <% @contador_1 = name -%>
+      <ul id="ul_enl_<%= library.id %>" class="decoradatop llistaBlock llistacheck subllista" >
+                <li id="id_<%= library.id %>" class="primer link">
+                <% else %>
+                <li id="id_<%= library.id %>" class="link">
+      <% end -%>
+
+          <%= hidden_field_tag "library[#{library.id}][is_preferido]", 0 %>
+            <%= check_box_tag "library[#{library.id}][is_preferido]", 1, library.is_preferido == true, :class => "check"  %>
+            <label class="amagar" for="library_<%= library.id %>_is_preferido"><%= library.title %></label>
+            <ul class="opcions">
+                    <li class="url">
+                    <%= link_to  library_url(library),  :class => "pop" do -%>
+<%= library.title -%>
+<% end %>
+                      </li>
+                        <li class="opcio"><%= link_to image_tag( "http://#{HOST_CV}/UOC/mc-icons/widgets/esborra.png", :alt => "#{t("library_view.esborra")} #{library.title}"), library, :confirm => t("library_view.segure"), :method => :delete, :title => "Esborrar" %></li>
+                        <li class="opcio"><%= link_to image_tag( "http://#{HOST_CV}/UOC/mc-icons/widgets/edita.png", :alt => "#{t("library_view.edita")} #{library.title}"), edit_library_path(library), :title => "Editar" %></li>
+                    </ul>
+          </li>
+
+          <% end %>
+      <% if !@contador_1.blank? %>
+          </ul>
+      </li>
+      <% end %>
+
+                </ul>
+
+
+  <div class="botonera">
+    <%= submit_tag t("library_view.actualitza_pref"), :class=>"boto actualitza" %>
+  </div>
+  <% end %>
+
+
+
+<%= will_paginate @all_libraries, :param_name => :all_page, :class => "paginador pagines" %>
+<% end %>
+  </div>
+
+<div id="public_tabcontent">
+<% if @being_shared_folders.length == 0 %>
+<div class="agora">
+    <p><%= t("library_view.no_items_public") %></p>
+        </div>
+    <% else %>
+      <ul class="decorada llistaBlock">
+<% @being_shared_folders.each do |folder| %>
+<% library = Library.find_by_folder_id(folder.id) %>
+                    <li <% if Library.is_last_item(@being_shared_folders, folder) %> class="ultim" <% end %> >
+                    <%= link_to library_url(library),  :class => "link"  do -%>
+<%= folder.description -%>
+<% end %>
+          </li>
+
+<% end %>
+      </ul>
+
+<%= will_paginate @being_shared_folders, :param_name => :public_page, :class => "paginador pagines" %>
+
+<% end %>
+    </div>
+
+

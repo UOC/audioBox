@@ -1,0 +1,35 @@
+                	<h2><%= t("audiobox_view.accedeix") %></h2>
+					<div class="description destacat"> <!-- AHL; Añado esta div class="description destacat" -->
+        				<h3><%= t("audiobox_view.audio_box") %></h3>
+                        <p><%= t("audiobox_view.mess_info2") %></p>
+        			</div>
+        			<% if flash[:error] -%>
+<p class="error info" role="alert">
+	<%= flash[:error] %>
+</p>
+<% end -%>
+<% if flash[:notice] -%>
+<p class="notice info" role="alert">
+	<%= flash[:notice] %>
+</p>
+<% end -%>
+<!-- Marcadors - login -->
+<%= form_tag( {:controller => "sessions", :action => "login" }, :method => "post", :class => "formulari" ) do %>
+<div class="inici-form destacat">
+	<fieldset>
+		<legend><%= t "audiobox_view.please_login" %></legend>
+		<p class="field">
+			<label for="name"><%= t "audiobox_view.usuari" %>:</label>
+			<%= text_field_tag :name, params[:name] %>
+		</p>
+		<p class="field">
+			<label for="password"><%= t "audiobox_view.contrasenya" %>:</label>
+			<%= password_field_tag :password, params[:password] %>
+		</p>
+		<%= hidden_field_tag "callback", @callBack %>
+			</fieldset>
+		<div class="actions botonera">
+			<%= submit_tag t("audiobox_view.do_login"), :class => "boto" %>
+		</div>
+		</div>
+		<% end -%>

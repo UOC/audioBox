@@ -1,0 +1,44 @@
+<% class_audio = @class_audio.nil? ? "" : @class_audio %>
+<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+		<div id="jp_container_1" class="jp-audio<%= class_audio %>">
+		<div class="jp-title">
+					<h3>
+				<span class="play-state"></span>:
+				<span class="track-name"><%= t "jplayer.nothing" %></span>
+				</h3>
+				</div>
+			<div class="jp-type-single">
+				<div class="jp-gui jp-interface">
+					<ul class="jp-controls">
+						<li><a href="javascript:;" class="jp-play" tabindex="1"><%= t "jplayer.play" %></a></li>
+						<li><a href="javascript:;" class="jp-pause" tabindex="1"><%= t "jplayer.pause" %></a></li>
+						<li><a href="javascript:;" class="jp-stop" tabindex="1"><%= t "jplayer.stop" %></a></li>
+						<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><%= t "jplayer.mute" %></a></li>
+						<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute"><%= t "jplayer.unmute" %></a></li>
+						<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume"><%= t "jplayer.maxvolume" %></a></li>
+					</ul>
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<div class="jp-time-holder">
+						<div class="jp-current-time"></div>
+						<div class="jp-duration"></div>
+
+						<ul class="jp-toggles">
+							<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat"><%= t "jplayer.repeat" %></a></li>
+							<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off"><%= t "jplayer.repeat_of" %></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="jp-no-solution">
+					<span>Update Required</span>
+					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				</div>
+			</div>
+		</div>

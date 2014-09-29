@@ -1,0 +1,4 @@
+<h2><%= t "audiobox_view.new_user" %></h2>
+<%= form_for @user, :url => { :action => 'create' }, :html => { :class => "formulari" } do |f| %>
+	<%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>

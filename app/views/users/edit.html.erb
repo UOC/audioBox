@@ -1,0 +1,9 @@
+<h2><%= @title %></h2>
+<% if flash[:notice] -%>
+<p class="notice">
+	<%= flash[:notice] %>
+</p>
+<% end -%>
+<%= form_for @user, :url => { :action => 'update' }, :html => { :class => "formulari" } do |f| %>
+	<%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>

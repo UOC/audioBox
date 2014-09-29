@@ -1,0 +1,33 @@
+# -*- encoding : utf-8 -*-
+
+ MI_FILE_ESTENSIONS = {
+ 'c' => 'c.png',
+'cdr' =>  'cdr.png',
+'cpp' =>  'cpp.png',
+'doc' =>  'doc.png',
+'exe' =>  'exe.png',
+'gz' =>  'gz.png',
+'gzip' =>  'gzip.png',
+'rar' =>  'gzip.png',
+'h' =>  'h.png',
+'hlp' =>  'hlp.png',
+'hpp' =>  'hpp.png',
+'htm' =>  'htm.png',
+'html' =>  'htm.png',
+'java' =>  'java.png',
+'MDB' =>  'MDB.png',
+'mpp' =>  'mpp.png',
+'pas' =>  'pas.png',
+'pdf' =>  'pdf.png',
+'spr' =>  'spr.png',
+'tar' =>  'tar.png',
+'txt' =>  'txt.png',
+'xml' =>  'txt02.png',
+'vcf' =>  'vcf.png',
+'voz' =>  'voz.png',
+'mp3' =>  'voz.png',
+'wav' =>  'voz.png',
+'wma' =>  'voz.png',
+'xls' =>  'xls.png',
+'zip' =>  'zip.png'
+}

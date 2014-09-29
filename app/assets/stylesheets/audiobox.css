@@ -1,0 +1,713 @@
+/*  CSS Document */
+* {
+  box-sizing: border-box;
+}
+.audiobox {padding-bottom: 20px;}
+.ocultat  {
+  display: none;
+  visibility: hidden;
+}
+h3, h4 {
+  font-family: Georgia, "Times New Roman", Times, serif
+}
+h3 a {
+  font-weight: bold;
+}
+h3.separador {
+  font-weight: bold;
+}
+
+a img {vertical-align: top;}
+body.popup .header {
+    padding: 0 0 0 10px;
+}
+#capsalera h1 {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+#capsalera ul {
+    float: right;
+    margin-top: 15px;
+}
+#capsalera .img_versio_beta {
+    float: right;
+}
+div#header {
+  padding-bottom: 10px;
+  /*margin-bottom: 20px;*/
+  float: left;
+  width: 96%;
+}
+#header h3 {
+  /*width: 25%;*/
+  margin-top: 25px;
+}
+#header .headerLeft {
+  float: left;
+    padding: 0;
+  min-height: 34px;
+}
+#content .description {
+  background: #F8F8F8 url("http://audiobox.uoc.edu/rb/audioBox/assets/audiobox-logo2.png") 1em center no-repeat;
+}
+h2.headerLeft a, #content .description h3 {
+  font-size: 2em;
+  font-weight: lighter;
+  font-family: Verdana, Geneva, sans-serif;
+}
+#header .headerRight {
+  float: right;
+  margin-top: -35px;
+}
+#header .headerRight .right p {
+  padding: 10px;
+    width: auto;
+}
+#header .headerRight li.right a{
+  display: block;
+}
+.boto.preferences {
+    float: right;
+    margin: 25px 0 0;
+}
+
+div#menu {
+  border-top: 3px solid #09375E;
+  clear: both;
+}
+#container {
+  margin: 20px;
+  min-width: 320px;
+}
+#container #menu p {
+  padding: 5px 10px 10px;
+}
+.audiobox #content {
+  clear: both;
+  position: relative;
+  padding: 0;
+}
+.audiobox #content .destacat {
+  margin: 25px auto;
+}
+.audiobox #content .description {
+  padding: 2em 1em;
+}
+.audiobox #content .description h3, .audiobox #content .description p {
+  margin-left: 15%;
+}
+.audiobox #content .destacat .botonera, .audiobox #avis div.botonera {
+  padding-left: 42%;
+}
+.audiobox .avis {
+	width: 50%;
+}
+.audiobox .avis div.botonera {
+overflow: visible;
+width: 40%;
+clear: both;
+padding: 0;
+margin: 0 40%;
+ }
+.agora h3, .agora h4, .agora h5, .agora h6 {
+  padding: 5px 0;
+}
+.agora p {
+  padding: 5px 0;
+}
+p.agora, h3.agora {
+  padding: 10px;
+}
+.agmodificat {
+  padding-bottom: 0;
+}
+#menu .botonera {
+  float: right;
+}
+
+.botonera {
+  padding: 5px 0 10px;
+}
+#menu .botonera li:first-child .boto {
+  border-right: 1px solid #FFF;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#menu .botonera li:last-child .boto {
+  margin-left: 15px;
+}
+h3.separador .link {
+  text-decoration: none;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.pestanyes {
+  margin-top: 10px;
+}
+.decorada li, .llistaBlock .link, .decorada .link, .llistaBlock .noLink {
+  padding: 8px 10px;
+}
+.llistaBlock .link span.noLink {
+  padding: 0;
+}
+.desplegable .link, .llistacheck .link, .llistacheck .noLink {/* ************** Definido también en generals.css *************** */
+  padding-left: 25px;
+}
+.desplegable .nodesplegable {
+  padding-left: 10px;
+}
+.llistacheck .perfilActual {
+  padding-left: 25px;
+}
+.llistaBlock li {
+  padding: 0;
+}
+.imatgeLlista, .llistacheck .check {
+  left: 6px;
+}
+
+/* @group audiobox */
+/*.audiobox .agora {
+  padding: 0;
+    position: absolute;
+    right: 0;
+    top: -40px;
+}
+.audiobox .agora p {
+    padding: 5px 0 0;
+}*/
+.audiobox .pestanyes {
+  margin: 0;
+}
+.audiobox h3 {
+  padding: 10px 10px 10px 0;
+    font-size: 1em;
+}
+.audiobox .contingut .ui-tabs ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.audiobox .llistacheck .subllista {
+    border-top: none;
+}
+.audiobox .desplegable .link {
+  padding: 8px 10px;
+}
+.audiobox ul li a.link img, .audiobox ul li a.pop img {
+  margin-left: 10px;
+}
+.audiobox ul.opcions {
+  overflow: hidden;
+  margin-left: 20px;
+}
+.audiobox ul.opcions li {
+  border: none;
+}
+.audiobox ul.opcions li.opcio {
+  float: right;
+}
+.audiobox .decoradatop ul.opcions li.url {
+  float: left;
+}
+.audiobox ul.opcions li.opcio a img {
+  height: 0;
+}
+.audiobox .llistacheck .subllista {
+  padding: 0;
+}
+.audiobox .llistacheck .subllista > li {
+  padding: 8px 10px 10px 30px;
+}
+.audiobox .llistacheck .subllista .check {
+  margin: 3px 0 0 30px;
+}
+.audiobox ul.subllista li:hover .opcio a img {
+  height: 16px;
+  padding: 0 10px 0 0;
+}
+.audiobox .decoradatop .subllista a.link {
+  padding-left: 0;
+}
+.audiobox ul.decoradatop h3 {
+  padding: 0;
+}
+.audiobox .decoradatop h3>a {
+  /*color: #666666;*/
+  padding: 8px 10px;
+  display: block;
+}
+.audiobox h3 a img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.audiobox ul.decoradatop {
+  border-bottom: 1px dotted #CCCCCC;
+}
+.audiobox ul.decoradatop ul {
+  border-bottom: none;
+}
+.audiobox ul.decoradatop li.desplegar:hover {
+  background: none;
+}
+.audiobox a.actualitza, .audiobox input.actualitza  {
+  background: url("mc-icons/boto.png") repeat-x scroll center top,
+  url("http://cv.uoc.edu/UOC/mc-icons/general/actualitza-boto.png") no-repeat 5px 6px;
+  padding-left: 15px;
+
+}
+.audiobox .field {
+  margin-bottom: 10px;
+}
+.audiobox .field label {
+  float: left;
+  margin-right: 10px;
+  text-align: right;
+  width: 40%;
+}
+.audiobox dl {
+  overflow: hidden;
+}
+.audiobox dl dt {
+  float: left;
+  font-weight: bold;
+    margin-right: 10px;
+}
+.audiobox dt, .audiobox dd {
+  margin-bottom: 5px;
+}
+.audiobox .paginador span, .audiobox .paginador em, .audiobox .paginador a {
+  font-style: normal;
+  font-weight: bold;
+}
+.audiobox .paginador .previous_page {
+  background: url("http://cv.uoc.edu/UOC/mc-icons/general/anterior-ico2.png") no-repeat center top;
+  font-size: 0;
+    padding: 12px 10px;
+  text-indent: -1500px;
+}
+.audiobox .paginador .next_page {
+  background: url("http://cv.uoc.edu/UOC/mc-icons/general/seguent-ico2.png") no-repeat center top;
+  font-size: 0;
+    padding: 12px 10px;
+  text-indent: -1500px;
+}
+.audiobox .paginador .disabled {
+  background: none;
+}
+
+.fil-ariadna a.breadcrumb, .fil-ariadna span.breadcrumb {
+  background: url("http://audiobox.uoc.edu/rb/audioBox/assets/ariadna.png") no-repeat scroll 0 6px;
+  padding: 7px 10px 0 15px;
+  float: left;
+}
+
+.fil-ariadna a.breadcrumb:hover {
+  text-decoration: none;
+}
+
+.fil-ariadna a.breadcrumb img, .fil-ariadna span.breadcrumb img  {
+  margin-right: 5px;
+}
+.contingut .botonera {
+  padding-bottom: 5px;
+}
+.contingut ul.botonera {
+    margin: -2px 0 5px 0px;
+  float: left;
+}
+
+.semilink, input.semilink, button.semilink {
+    padding: 4px 10px 6px;
+}
+.semilink:hover {
+  padding: 3px 9px 5px;
+}
+.fil-ariadna {
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+}
+.fil-ariadna a.primer, .fil-ariadna a.primer:hover {
+  text-decoration: none;
+  float: left;
+  padding-top: 7px;
+}
+
+.fil-ariadna a.ultim, .fil-ariadna a.ultim:hover {
+  text-decoration: none;
+  color: #999999;
+  cursor: default;
+}
+
+.nowrap { white-space: nowrap; }
+
+#header .left a .left{
+  padding: 8px 0 0 5px;
+}
+
+#header .headerRight .left .left {
+  padding-top: 4px;
+}
+
+#header .headerRight .left .left.text {
+  font-family: georgia;
+    font-size: 1.5em;
+    padding: 11px 0 0 5px;
+}
+
+#header .left span {
+  color: #666666;
+    display: block;
+    font-size: 1em;
+}
+
+#header .headerRight .right .boto {
+    margin-top: 14px;
+}
+#files_and_folders {
+  float: none;
+  min-height: 150px;
+}
+#files_and_folders .arbol_section {
+  float: left;
+  width: 15%;
+}
+
+#files_and_folders tr:hover {
+  background-color: #f8fafc;
+}
+#files_and_folders ul.opcions {
+  overflow: hidden;
+  margin-left: 20px;
+}
+#files_and_folders ul.opcions li {
+  border: none;
+  padding-left: 5px;
+}
+#files_and_folders ul.opcions li.opcio {
+  float: none;
+  display: inline;
+  margin-right: 1em;
+}
+
+#files_and_folders tr:hover td.preferences a{
+  visibility: visible;
+}
+
+.colapse {
+    left: -3000px;
+    position: relative;
+    visibility: visible;
+}
+#files_and_folders tr td.preferences a img {
+  height: 16px;
+}
+
+table td.selectFile, table td:first-child {
+  border-left: 1px solid #E8E8E8;
+    border-right: 1px solid #E8E8E8;
+    height: 5em;
+    padding-left: 5px;
+    padding-right: 0;
+    width: 20px;
+}
+
+table td.file_type {
+text-align: right;
+padding: 0 2em 0 1em;
+  width: 5%;
+}
+
+td {
+  vertical-align: middle;
+}
+#files_and_folders tr:last-child {
+  background: none;
+}
+#files_and_folders tr:first-child {
+  background: none;
+}
+#files_and_folders tr:hover{
+  background: #f8fafc;
+}
+
+#files_and_folders tr:hover{
+  background: #f8fafc;
+}
+
+#files_and_folders tr:hover td.preferences a {
+    left: 0px;
+    position: relative;
+    visibility: visible;
+}
+.contingut td {
+  border-style: none none dotted none;
+  padding-left: 5px;
+}
+
+.contingut td.preferences {
+  text-align: right;
+}
+
+.contingut th span:first-child {
+  /*position: absolute;
+  left: -2000px;*/
+}
+.contingut th {
+  border-width: 1px;
+  padding: 5px 0 5px 5px;
+}
+
+.odd, .even {
+  background-color: #ffffff;
+}
+
+.botonera li {
+  float: left;
+}
+
+#files_and_folders .botonera li span{
+  padding-left: 2px;
+}
+
+.contingut a {
+    text-decoration: none;
+}
+
+.contingut table /*,  .contingut div.botonera*/ {
+  width: 100%;
+  float: left;
+}
+
+.contingut .conarbol table,.contingut .conarbol  .last   {
+  width: 85%;
+}
+
+.contingut .sinarbol table,.contingut .sinarbol .last  {
+  width: 100%;
+}
+
+#files_and_folders .last {
+  border-bottom: 1px solid #E8E8E8;
+    border-left: 1px solid #E8E8E8;
+    border-right: 1px solid #E8E8E8;
+  float: right;
+    overflow: visible;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 50px;
+}
+
+#files_and_folders ul.botonera {
+    margin: 0;
+    float: none;
+    padding-left: 0px;
+  padding-top: 10px;
+}
+
+#files_and_folders .botonera #checkbox_all {
+  vertical-align: middle;
+}
+.audiobox #avis div.botonera a.boto, .audiobox .avis div.botonera a.boto {
+  margin: 5px 0 0;
+}
+.checkAll {
+  float: left;
+    margin-top: 15px;
+    padding: 5px 5px 5px 6px;
+}
+
+.firstButton {
+  padding-left: 7px;
+}
+
+.dropdown {
+  /*background: url(../assets/draganddrop.png) no-repeat scroll 50% 75% #FCFCFC;*/
+  background-color: #FCFCFC;
+    border: 2px dashed #CCCCCC;
+    border-radius: 5px;
+    float: right;
+    overflow: hidden;
+    width: 60%;
+}
+
+.dropdown p {
+  line-height: 1.5em;
+  padding: 5% 10% 10%;
+    text-align: center;
+}
+
+.boto.preferences img {
+  padding-left: 4px;
+}
+
+.user_welcome {
+  display: none;
+}
+/* Vista del Llibre */
+.contingut div.mostra section, .contingut div.mostra .section, .contingut div.mostra .titol {
+  overflow: hidden;
+}
+.contingut div.mostra .titol {
+  margin-bottom: 15px;
+}
+.contingut div.mostra .titol h1 {
+  color: #FFF;
+  padding: 10px 0 10px 10px;
+  background-color: #789BB3;
+}
+/*.contingut div.mostra h1 a.boto {
+  font-size: 11px;
+    font-weight: normal;
+  background: none;
+  border: none;
+  color: #FFF;
+}
+.contingut div.mostra h1 a.boto, .contingut div.mostra section a.boto {
+  float: right;
+}*/
+.contingut div.mostra .section h2, .contingut div.mostra .section h3, .contingut div.mostra .section h4, .contingut div.mostra .section h5, .contingut div.mostra .section h6 {
+  padding: 10px 0;
+  background-color: #F5F5F5;
+  border-bottom: 1px dotted #CCC;
+}
+.contingut div.mostra .section h2 {
+  padding-left: 2%;
+}
+.contingut div.mostra .section h3 {
+  padding-left: 4%;
+  font-size: 1.1em;
+}
+.contingut div.mostra .section h4 {
+  padding-left: 6%;
+  font-size: 1em;
+}
+.contingut div.mostra .section h5 {
+  padding-left: 8%;
+  font-size: 1em;
+}
+.contingut div.mostra .section h6 {
+  padding-left: 10%;
+  font-size: 1em;
+}
+.contingut div.mostra section a.boto {
+  float: right;
+  margin: -32px 10px 0 0;
+}
+.contingut div.mostra section ul li {
+  padding-left: 8%;
+}
+.contingut div.mostra section ul ul.subllista {
+  border: 2px solid #CCC;
+  margin-left: 25%;
+}
+.contingut div.actions {
+  margin: 10px auto;
+  width: 15%;
+}
+.audiobox #content .description h3, .audiobox #content .description p { margin-left: 70px; }
+.audiobox #content .destacat .botonera { padding-left: 0; }
+p.preferences {
+/*float: right;
+margin-top: 25px;*/
+margin-top: 25px;
+position: absolute;
+top: 8em;
+right: 2em;
+}
+div#header { width: 90%; }
+#menu .botonera { float: none; position: absolute; right: 2em; z-index: 100; }
+.fil-ariadna span.breadcrumb { color: grey; background: url("http://audiobox.uoc.edu/rb/audioBox/assets/ariadna.png") no-repeat scroll 0 8px; padding: 7px 10px 5px 15px; float: left; }
+table td.info { background-color: #eee; color: #333; padding: 0 20px; }
+#files_and_folders .arbol_section { width: 14%; margin-right: 1%; }
+#files_and_folders .arbol_section .info { background-color: #eee; color: #333; padding-bottom: 30px; margin-right: 0; }
+#files_and_folders .arbol_section>ul { margin-top:0; }
+#files_and_folders .arbol_section li.titol { background-color: #789BB3; color: #fff; padding: 2px 0 3px 5px; }
+#files_and_folders .arbol_section li.titol a span {
+color: #FFF;
+}
+#files_and_folders .arbol_section ul ul ul { margin: 5px 10px; border-top: 1px dotted #CCC; border-bottom: 1px dotted #CCC; }
+.dropdown { width: 45%; }
+.contingut div.botonera ul.botonera { position: relative; float: right; width: 85%; }
+.contingut div.botonera ul.botonera li { float: right; }
+.contingut div.botonera ul.botonera li:first-child { float: none; position: absolute; left: 0; top: 50%; }
+#files_and_folders.conarbol .last { margin-bottom: 25px; }
+#files_and_folders .dropdown { margin-top: 25px; }
+.formulari input.boto { z-index: 101; }
+div.botonera p.info { width: 50%; margin: 0 auto; }
+.contingut div.botonera ul.botonera li:first-child a img {
+  width: 12px; height: 12px; vertical-align: middle; margin-right: 5px;
+  }
+.botonera li:last-child { float: right; }
+#files_and_folders .last .boto img { width: 10px; }
+.contingut div.botonera ul.botonera li a img { max-height: 12px; }
+ .audiobox #content #fitxa_tabcontent.veure_fitxa { float: left; width: 25%; margin-right: 1em; }
+#book_tabcontent div.mostra { min-height: 175px; margin-bottom: 25px; }
+#container {
+	overflow: hidden;
+ }
+div#menu {
+	margin-bottom: 5px;
+}
+.audiobox button, .audiobox .boto  {
+	text-transform: lowercase;
+}
+.contingut div#fitxa_tabcontent .destacat {
+	margin: 0;
+}
+.contingut div#book_tabcontent.veure_llibre  {
+	width: inherit;
+	margin: 0 5% 25px 25%;
+}
+.audiobox #content .description, div.inici-form.destacat, #files_and_folders table.tcomentaris td.coment_name { width: 40%; }
+#files_and_folders table.mi_users td.file_name { width: 25%; }
+.destacat p.explain_big { font-size: 0.9em; font-style: italic; color: #666; width: 50%; margin: -15px auto 0 32%; }
+#files_and_folders .arbol_section .info .boto { margin-left: 1em; }
+
+#files_and_folders .arbol_section .info .boto { margin-left: 1em; }
+.formulari input, .formulari select, .formulari textarea { max-width: 70%; }
+.audiobox .field span.explain { margin-left: 42%; }
+.fileupload-loading { left: 3%; top: 220px; width: 200px; height: 50px; background: url(../assets/loading.gif) center 0 no-repeat; background-size: 10%; }
+
+/* mediaqueries */
+@media only screen and (max-width: 960px) {
+  div#header {
+    width: 100%;
+  }
+  #header h3 {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 1026px) {
+  div#header {
+    width: 100%;
+  }
+  p.preferences {
+    top: 5em;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  div#header {
+    width: 90%;
+  }
+  #header h3 {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 443px) {
+  #header h3 {
+    width: 40%;
+  }
+    p.preferences {
+    top: 6em;
+  }
+  #capsalera .img_versio_beta {
+    display: none;
+  }
+}
+

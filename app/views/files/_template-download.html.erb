@@ -1,0 +1,32 @@
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr id="filend_{%=file.id%}" class="template-download fade">
+        {% if (file.error) { %}
+            <td class="selectFile"></td>
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+            <td class="file_name name"><span>{%=file.name%}</span> |
+            <span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td></td>
+        {% } else { %}
+        <td class="selectFile">
+        <input id="file_{%=file.id%}_is_preferido" name="file[{%=file.id%}][is_preferido]" type="hidden" value="0" />
+            <input class="check" id="file_{%=file.id%}_is_preferido" name="file[{%=file.id%}][is_preferido]" type="checkbox" value="1" />
+            <label class="amagar" for="file_{%=file.id%}_is_preferido">Selecciona {%=file.name%}</label>
+        </td>
+<td class="file_type preview">{% if (file.thumbnail_url != "") { %}
+                <img src="{%=file.thumbnail_url%}" alt="{%=file.tipo%}">
+            {% } %}</td>
+            <td colspan="1"></td>
+            <td class="file_name name">
+                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+                            <span>{%=o.formatFileSize(file.size)%}</span></td>            </td>
+        <td class="preferences">
+        <ul class="opcions" role="toolbar">
+            <li class="opcio"><a href="{%=file.delete_url%}/edit" data-remote="true" title="Edita"><img alt="Edita {%=file.name%}" src="edita-opcio.png" /></a></li>
+            <li class="opcio"><a href="{%=file.delete_url%}" data-confirm="Are you sure?" data-method="delete" rel="nofollow" title="Esborra"><img alt="Esborra {%=file.name%}" src="esborra.png" /></a></li>
+            </ul>
+        </td>
+        {% } %}
+    </tr>
+{% } %}
+</script>

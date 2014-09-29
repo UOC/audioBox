@@ -1,0 +1,342 @@
+<div class="botonera">
+
+<% cabeza = @mostrar_tabs ? 'class="amagar"' : '' -%>
+<h3 <%= cabeza.html_safe  %>><%= folderNameConcatenado(@folder) %></h3>
+
+<% if flash[:error] -%>
+<p class="error info" role="alert">
+  <%= flash[:error] %>
+</p>
+<% end -%>
+<% if flash[:notice] -%>
+<p class="notice info" role="alert">
+  <%= flash[:notice] %>
+</p>
+<% end -%>
+
+<% if !@mostrar_tabs  -%>
+<div role="navigation" aria-label="<%= t "audiobox_view.accions" %>">
+<ul class="botonera">
+    <li><%= link_to library_path(@library) do -%>
+    <%= image_tag "veure.png", :alt => "" %><%= t("audiobox_view.llegeix_llibre") -%>
+     <% end %>
+  </li>
+  <li><%= link_to edit_library_path(@library), :class => "boto", :remote => @rem_true  do -%>
+        <%= image_tag "edita-opcio.png", :alt => "" %><%= t("audiobox_view.llibre") -%>
+     <% end %>
+  </li>
+<% if @permiso && current_user.can_create(@folder) -%>
+     <li>
+     <%= link_to new_folder_folder_path(@folder), :class => "boto", :remote => @rem_true  do -%>
+        <%= image_tag "secciollibre-boto.png", :alt => "" %><%= t "audiobox_view.createNewFolder" -%>
+     <% end %>
+     </li>
+  <li>
+  <%= link_to new_folder_file_path(@folder), :class => "boto", :remote => @rem_true   do -%>
+   <%= image_tag "http://#{HOST_CV}/UOC/mc-icons/general/pujafitxer-boto.png", :alt => "" %><%= t "audiobox_view.uploadFile" %>
+      <% end %>
+  </li>
+<% if @folder.shared? -%>
+  <li><%= link_to shared_folder_path(@folder), :class => "boto" do -%>
+        <%= image_tag "compartit-boto.png", :alt => "" %><%= t("audiobox_view.shared") -%>
+     <% end %>
+  </li>
+    <% end -%>
+<% end %>
+
+<% if current_user.member_of_admins? -%>
+  <li id='show_permissions_li'><%= link_to_function 'Edit permissions', 'show_permissions();', { :id => 'show_permissions_link', :class => "boto"} %></li>
+  <li id='hide_permissions_li' class="ocult"><%= link_to_function 'Back to folder', 'hide_permissions();', { :id => 'hide_permissions_link', :class => "boto" } %></li>
+<% end -%>
+</ul>
+</div>
+<% end %>
+</div>
+
+<% if @folder.is_root? %>
+<div id="files_and_folders" role="main" class="sinarbol">
+<div id="tabs">
+<ul class="pestanyes">
+    <li id="fitxa" ><a href="#fitxa_tabcontent"><%= t("audiobox_view.meus_audios") %></a></li>
+    <li id="book"><a href="#book_tabcontent"><%= t("library_view.public") %></a></li>
+  </ul>
+<% else %>
+<div id="files_and_folders" role="main" class="conarbol">
+<div id="sin_tabs">
+<div class="arbol_section">
+<ul aria-label="<%= t('audiobox_view.arbre') %>"><%= breadcrumbs_gen_tree(@libro, @folder.id, TIPUS_MARCADOR , '', t("audiobox_view.index_name")) %></ul>
+<% if !@libro.has_children? %>
+<p class="info">
+<%= t "audiobox_view.no_index" %>
+     <%= link_to new_folder_folder_path(@folder), :class => "boto", :remote => @rem_true  do -%>
+        <%= image_tag "secciollibre-boto.png", :alt => "" %><%= t "audiobox_view.createNewFolder" -%>
+     <% end %>
+     </p>
+<% end %>
+</div>
+<% end %>
+<%= form_tag( "http://#{AJAX_URL}/folders/#{@folder.id}/update_multiple", :method => :post, :id => 'form_files_and_folders' ) do %>
+<div id="fitxa_tabcontent">
+<table class="mi_ficheros">
+  <thead>
+    <tr>
+    <th scope="col"><span class="amagar"><%= t "audiobox_view.selecciona" %></span></th>
+      <th scope="col"><%= t "audiobox_view.type" %></th>
+      <th scope="col"><%= t "audiobox_view.date_modified" %></th>
+      <th scope="col"><%= t "audiobox_view.description" %></th>
+      <th scope="col" class="preferences"><%= t "audiobox_view.accions" %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @folder_vacio %>
+<tr id="table_vacia"><td class="info" colspan="5">
+<% if @folder.is_root? %>
+<%= "#{t("library_view.no_items")} '#{t("library_view.nova_url")}'"  %>
+<% else %>
+ <%= @folder.tipo == BOOK_PREFIX ?  t("audiobox_view.book_no_datos") : t("audiobox_view.no_datos") %>
+<% end %>
+</td></tr>
+<% elsif @all_folder_vacio    %>
+<% if !@folder.is_root? %>
+<tr id="table_vacia"><td class="info" colspan="5"><%= @folder.tipo == BOOK_PREFIX ? "#{t("audiobox_view.book_file_no_datos")}" : t("audiobox_view.file_no_datos") %></td></tr>
+<% end %>
+<% end %>
+      <% @folder.user_files.each do |file| -%>
+    <% if current_user.can_read(@folder) -%>
+    <tr id="filend_<%= file.id %>" class="<%= cycle('even','odd') %>">
+    <td class="selectFile">
+                      <%= hidden_field_tag "file[#{file.id}][is_preferido]", 0 %>
+            <%= check_box_tag "file[#{file.id}][is_preferido]", 1, false, :class => "check"  %>
+            <label class="amagar" for="file_<%= file.id %>_is_preferido"><%= t("audiobox_view.selecciona2",:name => file.nameConcatenado) %></label>
+          </td>
+      <td class="file_type"><%= image_tag( getImagenFile(file.attachment_file_name), :alt => "#{t("audiobox_view.fichero")} #{getExtFile(file.attachment_file_name)}", :title => "#{t("audiobox_view.fichero")} #{getExtFile(file.attachment_file_name)}") %></td>
+      <td class="file_modified"><%= l file.updated_at, :format => :short %></td>
+      <% abre_en = is_val_extFile?(file.attachment_file_name) ? {'class' => 'track'} : { 'target' => 'new_file'}%>
+      <td class="file_name"><%= link_to file.nameConcatenado, file_path(file), abre_en %></td>
+      <td class="preferences">
+      <ul class="opcions" role="toolbar">
+      <% if file.coments.size > 0 %>
+        <li class="opcio"><%= link_to image_tag("Veurecomentari.png", :alt => "#{t('library_view.veure_comentaris')} #{file.nameConcatenado}"), file_coments_path(file), :title => t('library_view.veure_comentaris'), :class => 'colapse' %></li>
+        <% end %>
+        <li class="opcio"><%= link_to image_tag("Escriucomentari.png", :alt => "#{t('library_view.comenta')} #{file.nameConcatenado}"), new_file_coment_path(file), :title => t('library_view.comenta'), :class => 'colapse', :remote => @rem_true %></li>
+        <li class="opcio"><%= link_to image_tag("descarrega-arxiu.png", :alt => "#{t('audiobox_view.descarrega')} #{file.nameConcatenado}"), "#{file_path(file)}?modo=down", :title => t('audiobox_view.descarrega'), :class => 'colapse' %></li>
+        <% if current_user.can_update(file.folder) -%>
+        <li class="opcio"><%= link_to image_tag("edita-opcio.png", :alt => "#{t('library_view.edita')} #{file.nameConcatenado}"), edit_file_path(file), :title => t('library_view.edita'), :class => 'colapse', :remote => @rem_true %></li>
+      <% if current_user.can_delete(file.folder) -%>
+        <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{file.nameConcatenado}"), file_path(file), :method => 'delete', :confirm => t("audiobox_view.are_sure"), :title => t('library_view.esborra'), :class => 'colapse' %></li>
+      <% end -%>
+<% end -%>
+</ul>
+      </td>
+    </tr>
+    <% end -%>
+  <% end -%>
+
+  <% @folder.children.each do |folder| -%>
+  <% next if folder.name == "dropbox" && !@current_user.is_dropbox %>
+    <% if current_user.can_read(folder) -%>
+    <tr class="<%= cycle('even','odd') %>">
+<td class="selectFile">
+                      <%= hidden_field_tag "folder[#{folder.id}][is_preferido]", 0 %>
+            <%= check_box_tag "folder[#{folder.id}][is_preferido]", 1, false, :class => "check"  %>
+            <label class="amagar" for="folder_<%= folder.id %>_is_preferido"><%= t("audiobox_view.selecciona2",:name => truncate(folder.nameConcatenado, :length => 50, :separator => ' ')) %></label>
+          </td>
+      <td class="file_type">
+      <% if folder.tipo == BOOK_PREFIX -%>
+      <%= image_tag(folder.shared? ? 'llibre_compartit.png' : "llibre.png" , :alt => folder.shared? ? t("audiobox_view.folderLlibreShared") : t("audiobox_view.folder_llibre"), :title => folder.shared? ? t("audiobox_view.folderLlibreShared") : t("audiobox_view.folder_llibre")) %>
+      <% else %>
+      <%= image_tag(folder.shared? ? 'seccio_compartida.png' : "secciollibre.png" , :alt => folder.shared? ? t("audiobox_view.folderShared") : t("audiobox_view.folder"), :title => folder.shared? ? t("audiobox_view.folderShared") : t("audiobox_view.folder")) %>
+      <% end %>
+      </td>
+      <td class="file_modified"><%= l folder.updated_at, :format => :short %></td>
+      <td class="file_name"><%= link_to truncate(folder.nameConcatenado, :length => 50, :separator => ' '), folder_path(folder) %></td>
+      <!--  <td class="file_size">--</td> -->
+      <td class="preferences">
+      <ul class="opcions" role="toolbar">
+      <% if folder.tipo == BOOK_PREFIX -%>
+        <li class="opcio"><%= link_to image_tag("veure.png", :alt => "#{t('audiobox_view.llegeix_llibre')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), library_path(folder.libraries), :title => t('audiobox_view.llegeix_llibre'), :class => 'colapse'  %></li>
+        <% end %>
+        <li class="opcio"><%= link_to image_tag("descarrega.png", :alt => "#{t('library_view.exporta_audio_zip')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), "http://#{AJAX_URL}/files/#{folder.id}/zip", :title => t('library_view.exporta_audio_zip'), :class => 'colapse'  %></li>
+        <li class="opcio"><%= link_to image_tag("Audiollibre.png", :alt => "#{t('library_view.exporta_audio_daisy')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), "http://#{AJAX_URL}/files/#{folder.id}/daisy", :title => t('library_view.exporta_audio_daisy'), :class => 'colapse'  %></li>
+        <% if current_user.can_update(folder) -%>
+        <% alt_texto = folder.tipo == BOOK_PREFIX ? t("audiobox_view.shareBook") : t("audiobox_view.share")%>
+        <li class="opcio"><%= link_to image_tag('share.png', :alt => "#{alt_texto} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}" ), new_shared_folder_path(:id => folder), :folder_id => folder.id, :folder_name => folder.name, :title => alt_texto, :class => 'colapse', :remote => @rem_true  %></li>
+        <% if folder.tipo == SECTION_PREFIX  %>
+        <li class="opcio"><%= link_to image_tag("edita-opcio.png", :alt => "#{t('library_view.edita')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), edit_folder_path(folder), :title => t('library_view.edita'), :class => 'colapse', :remote => @rem_true %></li>
+        <% end %>
+      <% if current_user.can_delete(folder) -%>
+        <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), folder_path(folder), :method => 'delete', :confirm => t("audiobox_view.are_sure"), :title => t('library_view.esborra'), :class => 'colapse' %></li>
+      <% end %>
+      <% end %>
+      </ul>
+      </td>
+    </tr>
+    <% end -%>
+  <% end -%>
+  </tbody>
+  </table>
+
+  </div>
+
+
+<% if @folder.is_root? %>
+<div id="book_tabcontent">
+
+  <!-- Listing Shared Folders (the folders shared by others) -->
+
+    <table>
+  <thead>
+      <tr>
+          <th scope="col"><span class="amagar"><%= t "audiobox_view.selecciona" %></span></th>
+      <th scope="col"><%= t "audiobox_view.type" %></th>
+      <th scope="col"><%= t "audiobox_view.date_modified" %></th>
+      <th scope="col"><%= t "audiobox_view.description" %></th>
+      <th scope="col" class="preferences"><%= t "audiobox_view.accions" %></th>
+    </tr>
+    </thead>
+    <tbody>
+  <% if @being_shared_folders.empty? -%>
+  <tr><td class="info" colspan="5"><%= t("library_view.no_items_public") %></td></tr>
+  <% else %>
+<% @being_shared_folders.each do |folder| %>
+<% if current_user.can_read(folder) -%>
+<% shared_folder = SharedFolder.find_by_folder_id(folder) %>
+  <tr class="<%= cycle('even','odd') %> asset_details <%= folder.shared? ? 'shared_folder' : 'folder' %>" id="folder_<%= folder.id %>">
+  <td class="selectFile">
+                        <%= hidden_field_tag "sfolder[#{folder.id}][is_preferido]", 0 %>
+            <%= check_box_tag "sfolder[#{folder.id}][is_preferido]", 1, false, :class => "check", :disabled => true %>
+            <label class="amagar" for="sfolder_<%= folder.id %>_is_preferido"><%= t("audiobox_view.selecciona2",:name => truncate(folder.nameConcatenado, :length => 50, :separator => ' ')) %></label>
+  </td>
+  <td class="file_type">
+  <%= image_tag(folder.tipo == BOOK_PREFIX ? 'llibre_compartit.png' : 'seccio_compartida.png', :alt =>  folder.tipo == BOOK_PREFIX ? t("audiobox_view.folderLlibreShared") : t("audiobox_view.folderShared"), :title =>  folder.tipo == BOOK_PREFIX ? t("audiobox_view.folderLlibreShared") : t("audiobox_view.folderShared")) %>
+  </td>
+  <td class="file_last_updated"><%= l folder.updated_at, :format => :short %></td>
+  <td class="file_name"><%= link_to truncate(folder.nameConcatenado, :length => 50, :separator => ' '), folder_path(folder) %></td>
+    <td class="preferences">
+      <ul class="opcions" role="toolbar">
+      <% if folder.libraries %>
+         <li class="opcio"><%= link_to image_tag("veure.png", :alt => "#{t('audiobox_view.llegeix_llibre')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), library_path(folder.libraries), :title => t('audiobox_view.llegeix_llibre'), :class => 'colapse'  %></li>
+         <% end %>
+        <li class="opcio"><%= link_to image_tag("descarrega.png", :alt => "#{t('library_view.exporta_audio_zip')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), "http://#{AJAX_URL}/files/#{folder.id}/zip", :title => t('library_view.exporta_audio_zip'), :class => 'colapse'  %></li>
+        <li class="opcio"><%= link_to image_tag("Audiollibre.png", :alt => "#{t('library_view.exporta_audio_daisy')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), "http://#{AJAX_URL}/files/#{folder.id}/daisy", :title => t('library_view.exporta_audio_daisy'), :class => 'colapse'  %></li>
+        <li class="opcio"><%= link_to image_tag("esborra.png", :alt => "#{t('library_view.esborra')} #{truncate(folder.nameConcatenado, :length => 50, :separator => ' ')}"), shared_folder_path(shared_folder), :method => 'delete', :confirm => t("audiobox_view.are_sure"), :title => t('library_view.esborra'), :class => 'colapse' %></li>
+      </ul>
+      </td>
+  </tr>
+  <% end %>
+<% end %>
+<% end %>
+</tbody>
+</table>
+</div>
+<% end %>
+
+<% if !(@folder_vacio && @being_shared_folders.size == 0) %>
+<div class="last">
+        <span class="checkAll">
+          <%= check_box_tag "checkbox_all", 1, false, :class => "check",  :disabled => @folder.is_root? %>
+          <label for="checkbox_all"><%= t "audiobox_view.selAll" %></label>
+        </span>
+        <ul class="botonera">
+<li class="firstButton">
+        <%= button_tag(nil,{ :class=>"boto semilink", :id => "descarrega", :type => "submit", :name => 'descarrega' }) do  %>
+        <%= image_tag("http://#{HOST_CV}/UOC/mc-icons/general/descarrega.png", :alt => "")  %><%= content_tag(:span, t("audiobox_view.descarrega")) %>
+<% end %>
+        </li>
+        <% if current_user.can_delete(@folder) -%>
+        <li>
+        <%= button_tag(nil, {:confirm => t("audiobox_view.are_sure"), :class=>"boto semilink", :type => "submit", :id => "elimina", :name => 'Elimina'}) do %>
+        <%= image_tag("esborra.png", :alt => "")  %><%= content_tag(:span, t("library_view.esborra")) %>
+<% end %>
+        </li>
+        <% end %>
+        <% texto = %Q[#{content_tag(:span, t("library_view.expand_all"))}].html_safe %>
+        <li id='show_toolbar'><%= link_to_function(texto ,"expandAllTogle('#{t("library_view.expand_all")}','#{t("library_view.compacta_all")}')", { :id => 'show_toolbar_link', :class => "boto"})  %></li>
+      </ul>
+      </div>
+
+<% end %>
+<% end %>
+</div>
+<% if current_user.member_of_admins? -%>
+<div id="permissions" class="ocult">
+  <%= form_tag update_multiple_permissions_path do %>
+    <%= hidden_field_tag '_method', 'put' %>
+    <table>
+      <tr>
+        <th></th>
+        <th></th>
+        <th class="permission_column">Create</th>
+        <th class="permission_column">Read</th>
+        <th class="permission_column">Update</th>
+        <th class="permission_column">Delete</th>
+      </tr>
+      <% @folder.permissions.each do |permission| -%>
+      <%= fields_for "permissions[]", permission do |f| %>
+      <tr class="<%= cycle('even','odd') %>">
+        <% if permission.group.admins_group? -%>
+          <td><%= image_tag('group_grey.png') %></td>
+          <td class="disabled"><%= permission.group.name %></td>
+          <td class="permission_column"><input type="checkbox" checked="checked" disabled="disabled" /></td>
+          <td class="permission_column"><input type="checkbox" checked="checked" disabled="disabled" /></td>
+          <td class="permission_column"><input type="checkbox" checked="checked" disabled="disabled" /></td>
+          <td class="permission_column"><input type="checkbox" checked="checked" disabled="disabled" /></td>
+        <% else -%>
+          <td><%= image_tag('group.png') %></td>
+          <td><%= permission.group.name %></td>
+          <td class="permission_column"><%= f.check_box :can_create %></td>
+          <td class="permission_column"><%= f.check_box :can_read %></td>
+          <td class="permission_column"><%= f.check_box :can_update %></td>
+          <td class="permission_column"><%= f.check_box :can_delete %></td>
+        <% end -%>
+      </tr>
+      <% end -%>
+      <% end -%>
+    </table>
+    <p class="permissions_button">
+      <%= submit_tag 'Save', :class => 'button' %>
+      <%= check_box_tag :recursive, true %> Apply changes to subfolders
+    </p>
+  <% end -%>
+
+</div>
+<% end -%>
+<% if @mostrarPlayer || (@permiso && current_user.is_clasic_upload != true && current_user.can_create(@folder)) %>
+<div class="tabla_pie">
+<% if @permiso && current_user.is_clasic_upload != true && current_user.can_create(@folder) -%>
+<% @class_audio = " folder_view" %>
+      <div class="dropdown" id="folder_form">
+        <p><%= @folder.tipo == BOOK_PREFIX ? t("audiobox_view.book_enganxa") : t("audiobox_view.enganxa") %> <%= @folder.description %></p>
+        <div >
+<%= form_for [@folder, @folder.user_files.build],  :url => "http://#{AJAX_URL}/folders/#{@folder.id}/files", :html => { :method => :post, :multipart => true, :id => "fileupload" } do |f| %>
+<%= render :partial => "files/new_modern", :locals => { :f => f } %>
+<% end %>
+</div>
+      </div>
+      <% end %>
+<% if @mostrarPlayer %>
+<%= render 'shared/player' %>
+<% end %>
+</div>
+<% end %>
+</div>
+
+
+<script type="text/javascript" LANGUAGE="JavaScript">
+var up_file_overwrite = ' <%= t("audiobox_view.up_file_overwrite") %>';
+var up_file = '<%= t("audiobox_view.up_file") %> ';
+
+var mis_files = {};
+<% @folder.user_files.each do |file| -%>
+<% unless file.id.nil? %>
+mis_files['<%= file.attachment_file_name %>'] = "filend_<%= file.id %>";
+<% end %>
+<% end %>
+
+
+$(document).ready(function() {
+$('input.check').on('change', function(e) {
+checkAllTogle(this, 'checkbox_all');
+});
+});
+</script >

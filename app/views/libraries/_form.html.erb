@@ -1,0 +1,66 @@
+<script type="text/javascript" LANGUAGE="JavaScript">
+$(document).ready(function() {
+ expandTogle('#mas_info','<%= t("library_view.expand_info") %>','<%= t("library_view.compacta_info") %>');
+});
+</script>
+
+<%= form_for(@library, :html => { :class => "formulari" } ) do |f| %>
+  <% if @library.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@library.errors.count, "error") %> <%= t("library_view.no_save") %>:</h2>
+
+      <ul>
+      <% @library.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="destacat">
+			<p><%= t "library_view.title_form" %>:</p>
+    <p class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title,'aria-required' => 'true', :required => 'required'  %>
+  </p>
+    <p class="field">
+    <%= f.label :autor %>
+    <%= f.text_field :autor %>
+  </p>
+  <p class="field ocult">
+    <%= f.label :security %>
+    <%= select( "library", "security", { "public" => "public", "private" => "private"}) %>
+  </p>
+<p class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, 'aria-describedby' => "mas_info" %>
+    				<% texto = %Q[#{image_tag("info.png", :alt => t("library_view.expand_info"))}].html_safe %>
+				<%= link_to_function(texto ,"expandTogle('#mas_info','#{t("library_view.expand_info")}','#{t("library_view.compacta_info")}')".html_safe , { :id => 'show_toolbar_link', :class => "ask"})  %>
+				</p>
+
+				<%= render 'mas_info' %>
+
+  <% if @aula_llibre %>
+  <p class="field">
+    <%= f.label :site %>
+    <%= f.text_field :site %>
+  </p>
+    <p class="field">
+    <%= f.label :assignatura %>
+    <%= f.text_field :assignatura %>
+  </p>
+  <p class="field">
+    <%= f.label :periodo %>
+    <%= f.text_field :periodo %>
+  </p>
+<% end %>
+<p class="field">
+			<%= f.check_box :is_preferido %>
+			<%= label_tag :is_preferido, t("library_view.is_preferido") %>
+</p>
+</div>
+  <div class="actions botonera">
+    <%= f.submit t("library_view.accepta"), :class => "boto" %>
+    <%= link_to t('audiobox_view.cancel_button'), @mi_retorno, :class => "boto" %>
+  </div>
+<% end %>

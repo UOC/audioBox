@@ -1,0 +1,6 @@
+$("#files_and_folders_dialog").html("<h3><%= escape_javascript(@title) %></h3>").append('<%= escape_javascript(
+form_for(@user, :url => { :action => 'update' }, :html => { :class => "formulari" }) { |f|
+	render(:partial => 'form', :locals => { :f => f })
+	})
+%>');
+<%= render(:partial => 'shared/focus_edit') %>

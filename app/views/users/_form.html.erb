@@ -1,0 +1,67 @@
+<%= f.error_messages %>
+<% if current_user.member_of_admins? -%>
+<p class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name, { :class => 'text_input' } %>
+</p>
+<p class="field">
+	<%= f.label :email %>
+	<%= f.text_field :email, { :class => 'text_input' } %>
+</p>
+<p class="field">
+	<%= label_tag :password %>
+	<%= f.password_field :password, { :class => 'text_input' } %>
+</p>
+<p class="field">
+	<%= label_tag :confirm_password %>
+	<%= f.password_field :password_confirmation, { :class => 'text_input' } %>
+</p>
+<p class="field">
+			<%= f.check_box :is_clasic_upload%>
+			<%= label_tag :is_clasic_upload, t("audiobox_view.is_clasic_upload")  %>
+</p>
+<% end %>
+<p class="field">
+			<%= f.check_box :is_clasic_dialog %>
+			<%= label_tag :is_clasic_dialog, t("audiobox_view.is_clasic_dialog")  %>
+</p>
+<p class="field">
+			<%= f.check_box :is_alto_contraste%>
+			<%= label_tag :is_alto_contraste, t("audiobox_view.is_alto_contraste")  %>
+</p>
+<% if current_user.member_of_admins? -%>
+<p class="field">
+	<%= f.label :campususer %>
+	<%= f.text_field :campususer, { :class => 'text_input' } %>
+</p>
+<p class="field">
+	<%= f.label :campuslogin %>
+	<%= f.text_field :campuslogin, { :class => 'text_input' } %>
+</p>
+<p>
+	Member of these groups:
+	<span class="user_groups">
+	<% Group.all.each do |group| -%>
+	<% if @user.is_admin && group.admins_group? -%>
+		<span class="group nowrap disabled">
+			<input type="checkbox" checked="checked" disabled="disabled" />
+			<%= group.name %>
+		</span>
+	<% else -%>
+		<span class="group nowrap">
+			<%= check_box_tag('user[group_ids][]', group.id, user_belongs_to_group(group)) %>
+			<%= group.name %>
+		</span>
+	<% end -%>
+	<% end -%>
+	</span>
+</p>
+<% end -%>
+  <div class="actions botonera">
+	<%= f.submit t("library_view.accepta"), :class => "boto" %>
+<% if @user != current_user -%>
+	<%= link_to t('library_view.enrera'), users_url %>
+	<% else %>
+	<%= link_to t('audiobox_view.cancel_button'), folder_url(Folder.root(current_user.id)), :class => "boto" %>
+<% end -%>
+</div>
